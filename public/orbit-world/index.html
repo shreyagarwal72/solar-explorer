@@ -1084,12 +1084,18 @@
     aiToggle.addEventListener('click', toggleAiPanel);
     aiCloseBtn.addEventListener('click', toggleAiPanel);
     
+    function formatBoldText(text) {
+      // Convert **text** to <strong>text</strong>
+      return text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    }
+    
     function addMessage(text, isUser = false) {
       const messageDiv = document.createElement('div');
       messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+      const formattedText = isUser ? text : formatBoldText(text);
       messageDiv.innerHTML = `
         <div class="ai-avatar"><i class="fa ${isUser ? 'fa-user' : 'fa-rocket'}"></i></div>
-        <div class="ai-text">${text}</div>
+        <div class="ai-text">${formattedText}</div>
       `;
       aiChatMessages.appendChild(messageDiv);
       aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
