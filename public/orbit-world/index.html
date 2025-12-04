@@ -19,7 +19,10 @@
   <meta name="geo.placename" content="India">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://orbitworld.app/">
+  <link rel="canonical" href="https://orbit-world.vercel.app/">
+  
+  <!-- PWA Support -->
+  <link rel="manifest" href="manifest.json">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -30,9 +33,13 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="dns-prefetch" href="https://images.unsplash.com">
   
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" as="style">
+  
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://orbitworld.app/">
+  <meta property="og:url" content="https://orbit-world.vercel.app/">
   <meta property="og:title" content="Orbit World | Interactive 3D Solar System Explorer">
   <meta property="og:description" content="Explore our solar system in stunning 3D! Interactive planet explorer with detailed facts about all 9 planets. Free educational astronomy tool.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=630&fit=crop">
@@ -68,7 +75,7 @@
     "name": "Orbit World",
     "alternateName": "Solar System Explorer",
     "description": "An interactive 3D solar system explorer featuring all planets with detailed information about orbital periods, temperatures, moons, and fascinating space facts",
-    "url": "https://orbitworld.app",
+    "url": "https://orbit-world.vercel.app",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript, CSS3, HTML5",
@@ -87,11 +94,11 @@
       "name": "Nextup Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://orbitworld.app/favicon.svg"
+        "url": "https://orbit-world.vercel.app/favicon.svg"
       }
     },
     "screenshot": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=630&fit=crop",
-    "featureList": ["Interactive 3D planets", "Planet facts and statistics", "Moon information", "Keyboard navigation", "Ambient space sounds", "Guided tour mode"],
+    "featureList": ["Interactive 3D planets", "Planet facts and statistics", "Moon information", "Keyboard navigation", "Ambient space sounds", "Guided tour mode", "AI Assistant", "Planet search", "Social sharing"],
     "keywords": "solar system, planets, astronomy, education, space exploration"
   }
   </script>
@@ -123,47 +130,96 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Device Detection Script -->
-  <script>
-    // Detect device and handle seamless switching
-    (function() {
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-      const urlParams = new URLSearchParams(window.location.search);
-      const forceDesktop = urlParams.get('desktop') === 'true';
-      const forceMobile = urlParams.get('mobile') === 'true';
-      
-      // Store preference in sessionStorage
-      if (forceDesktop) {
-        sessionStorage.setItem('orbitWorldView', 'desktop');
-      } else if (forceMobile) {
-        sessionStorage.setItem('orbitWorldView', 'mobile');
-      }
-      
-      const savedPreference = sessionStorage.getItem('orbitWorldView');
-      
-      // Redirect logic
-      if (isMobile && savedPreference !== 'desktop' && !forceDesktop) {
-        window.location.href = 'mobile.html';
-      }
-    })();
-  </script>
+<!-- Skip to content for accessibility -->
+<a href="#main-content" class="skip-to-content">Skip to Main Content</a>
+
+<!-- Device Detection & PWA Registration Script -->
+<script>
+  // Register Service Worker for PWA
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed:', err));
+    });
+  }
+  
+  // Detect device and handle seamless switching
+  (function() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceDesktop = urlParams.get('desktop') === 'true';
+    const forceMobile = urlParams.get('mobile') === 'true';
+    
+    // Store preference in sessionStorage
+    if (forceDesktop) {
+      sessionStorage.setItem('orbitWorldView', 'desktop');
+    } else if (forceMobile) {
+      sessionStorage.setItem('orbitWorldView', 'mobile');
+    }
+    
+    const savedPreference = sessionStorage.getItem('orbitWorldView');
+    
+    // Redirect logic
+    if (isMobile && savedPreference !== 'desktop' && !forceDesktop) {
+      window.location.href = 'mobile.html';
+    }
+  })();
+</script>
 
   <!-- Loading Screen -->
-  <div class="loader">
+  <div class="loader" role="status" aria-label="Loading Orbit World">
     <div class="loader-planet"></div>
     <div class="loader-ring"></div>
     <div class="loader-text">Launching into Space...</div>
   </div>
 
+  <!-- Orbit Lines Background -->
+  <div class="orbit-lines" aria-hidden="true">
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+    <div class="orbit-line"></div>
+  </div>
+
+  <!-- Asteroid Belt between Mars and Jupiter -->
+  <div class="asteroid-belt" aria-hidden="true">
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+    <div class="asteroid"></div>
+  </div>
+
   <!-- Nebula Effect -->
-  <div class="nebula">
+  <div class="nebula" aria-hidden="true">
     <div class="nebula-cloud nebula-1"></div>
     <div class="nebula-cloud nebula-2"></div>
     <div class="nebula-cloud nebula-3"></div>
   </div>
 
   <!-- Starfield Background with Parallax -->
-  <div class="starfield">
+  <div class="starfield" aria-hidden="true">
     <div class="stars stars-small"></div>
     <div class="stars stars-medium"></div>
     <div class="stars stars-large"></div>
@@ -173,6 +229,40 @@
     <div class="shooting-star shooting-star-3"></div>
     <div class="shooting-star shooting-star-4"></div>
     <div class="shooting-star shooting-star-5"></div>
+  </div>
+
+  <!-- Glowing Search Bar -->
+  <div class="search-container" role="search">
+    <div class="search-wrapper">
+      <div class="search-glow" aria-hidden="true"></div>
+      <div class="search-darkBorderBg" aria-hidden="true"></div>
+      <div class="search-white" aria-hidden="true"></div>
+      <div class="search-border" aria-hidden="true"></div>
+      
+      <div class="search-main">
+        <label for="planet-search" class="visually-hidden">Search planets</label>
+        <input 
+          type="text" 
+          id="planet-search" 
+          class="search-input" 
+          placeholder="Search planets..." 
+          aria-label="Search planets"
+          autocomplete="off"
+        >
+        <div class="search-input-mask" aria-hidden="true"></div>
+        <div class="search-pink-mask" aria-hidden="true"></div>
+        <div class="search-icon-wrapper" aria-hidden="true">
+          <i class="fa fa-search"></i>
+        </div>
+        <button class="search-clear-btn" id="searchClear" type="button" aria-label="Clear search">
+          <i class="fa fa-times"></i>
+        </button>
+        
+        <div class="search-results" id="searchResults" role="listbox" aria-label="Search results">
+          <!-- Results populated by JS -->
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Guided Tour Controls -->
@@ -242,16 +332,72 @@
 
   <!-- Fullscreen Controls -->
   <div class="fullscreen-controls">
-    <button class="fullscreen-btn" id="fullscreenToggle" title="Toggle fullscreen">
+    <button class="fullscreen-btn" id="fullscreenToggle" title="Toggle fullscreen" aria-label="Toggle fullscreen mode">
       <i class="fa fa-expand" id="fullscreenIcon"></i>
     </button>
     <span class="fullscreen-label">Fullscreen</span>
   </div>
 
+  <!-- Preferences Controls -->
+  <div class="preferences-controls">
+    <button class="preferences-btn" id="preferencesToggle" title="Preferences" aria-label="Open preferences">
+      <i class="fa fa-cog"></i>
+    </button>
+    <span class="preferences-label">Settings</span>
+  </div>
+
+  <!-- Preferences Panel -->
+  <div class="preferences-panel" id="preferencesPanel" role="dialog" aria-label="Preferences">
+    <h3>Preferences</h3>
+    <div class="pref-option">
+      <label>Asteroid Belt</label>
+      <div class="pref-toggle active" id="prefAsteroids" role="switch" aria-checked="true" tabindex="0"></div>
+    </div>
+    <div class="pref-option">
+      <label>Orbit Lines</label>
+      <div class="pref-toggle active" id="prefOrbits" role="switch" aria-checked="true" tabindex="0"></div>
+    </div>
+    <div class="pref-option">
+      <label>Shooting Stars</label>
+      <div class="pref-toggle active" id="prefShootingStars" role="switch" aria-checked="true" tabindex="0"></div>
+    </div>
+    <div class="pref-option">
+      <label>Nebula Effects</label>
+      <div class="pref-toggle active" id="prefNebula" role="switch" aria-checked="true" tabindex="0"></div>
+    </div>
+    <div class="pref-option">
+      <label>Reduced Motion</label>
+      <div class="pref-toggle" id="prefReducedMotion" role="switch" aria-checked="false" tabindex="0"></div>
+    </div>
+  </div>
+
   <!-- Keyboard Controls Hint -->
-  <div class="keyboard-hint">
+  <div class="keyboard-hint" aria-label="Keyboard navigation hint">
     <span><i class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> Navigate Planets</span>
   </div>
+
+  <!-- Social Sharing Buttons -->
+  <nav class="social-share" aria-label="Share this site">
+    <a href="https://twitter.com/intent/tweet?url=https://orbit-world.vercel.app&text=Explore%20the%20solar%20system%20in%20stunning%203D%20with%20Orbit%20World!" 
+       class="social-btn twitter" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+      <i class="fa fa-twitter"></i>
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://orbit-world.vercel.app" 
+       class="social-btn facebook" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+      <i class="fa fa-facebook"></i>
+    </a>
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://orbit-world.vercel.app&title=Orbit%20World&summary=Interactive%203D%20Solar%20System%20Explorer" 
+       class="social-btn linkedin" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+      <i class="fa fa-linkedin"></i>
+    </a>
+    <a href="https://wa.me/?text=Check%20out%20Orbit%20World%20-%20an%20amazing%203D%20solar%20system%20explorer!%20https://orbit-world.vercel.app" 
+       class="social-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">
+      <i class="fa fa-whatsapp"></i>
+    </a>
+    <button class="social-btn copy-link" id="copyLinkBtn" aria-label="Copy link to clipboard">
+      <i class="fa fa-link"></i>
+    </button>
+  </nav>
 
   <h1 class='logo'>
     Orbit World
@@ -1255,6 +1401,183 @@
     document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
     document.addEventListener('mozfullscreenchange', updateFullscreenUI);
     document.addEventListener('MSFullscreenChange', updateFullscreenUI);
+    
+    // ===== SEARCH FUNCTIONALITY =====
+    const searchInput = document.getElementById('planet-search');
+    const searchResults = document.getElementById('searchResults');
+    const searchClear = document.getElementById('searchClear');
+    
+    const planetSearchData = [
+      { id: 'mercury', name: 'Mercury', desc: 'Closest to the Sun', image: 'https://www.solarsystemscope.com/images/textures/full/2k_makemake_fictional.jpg' },
+      { id: 'venus', name: 'Venus', desc: 'Hottest planet', image: 'https://nasa3d.arc.nasa.gov/shared_assets/images/ven0aaa2/ven0aaa2-copy-428-321.jpg' },
+      { id: 'earth', name: 'Earth', desc: 'Our home planet', image: 'https://img00.deviantart.net/04ef/i/2009/114/3/e/new_earth_texture_map_by_lightondesigns.jpg' },
+      { id: 'mars', name: 'Mars', desc: 'The Red Planet', image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/mars_texture.jpg' },
+      { id: 'jupiter', name: 'Jupiter', desc: 'Largest planet', image: 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA07782_hires.jpg' },
+      { id: 'saturn', name: 'Saturn', desc: 'Famous rings', image: 'https://www.solarsystemscope.com/images/textures/full/2k_saturn.jpg' },
+      { id: 'uranus', name: 'Uranus', desc: 'Ice giant', image: 'https://img00.deviantart.net/957c/i/2017/165/4/9/uranus_texture_map_by_jcpag2010-db7yjwb.png' },
+      { id: 'neptune', name: 'Neptune', desc: 'Windiest planet', image: 'https://img00.deviantart.net/f068/i/2017/165/b/c/neptune_texture_map_by_jcpag2010-dbcjcv5.png' },
+      { id: 'pluto', name: 'Pluto', desc: 'Dwarf planet', image: 'https://pre00.deviantart.net/4677/th/pre/f/2015/314/4/e/pluto_map__2015_nov_10__by_snowfall_the_cat-d918tlb.png' }
+    ];
+    
+    function renderSearchResults(query) {
+      if (!query.trim()) {
+        searchResults.classList.remove('visible');
+        return;
+      }
+      
+      const filtered = planetSearchData.filter(p => 
+        p.name.toLowerCase().includes(query.toLowerCase()) || 
+        p.desc.toLowerCase().includes(query.toLowerCase())
+      );
+      
+      if (filtered.length === 0) {
+        searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-info"><h4>No results found</h4><p>Try searching for a planet name</p></div></div>';
+      } else {
+        searchResults.innerHTML = filtered.map(p => `
+          <div class="search-result-item" data-planet="${p.id}" role="option" tabindex="0">
+            <div class="search-result-preview" style="background-image: url('${p.image}')"></div>
+            <div class="search-result-info">
+              <h4>${p.name}</h4>
+              <p>${p.desc}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+      
+      searchResults.classList.add('visible');
+    }
+    
+    searchInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
+    searchInput.addEventListener('focus', () => { if (searchInput.value) renderSearchResults(searchInput.value); });
+    
+    searchResults.addEventListener('click', (e) => {
+      const item = e.target.closest('.search-result-item');
+      if (item && item.dataset.planet) {
+        document.getElementById(item.dataset.planet).checked = true;
+        updateTourInfo(item.dataset.planet);
+        searchInput.value = '';
+        searchResults.classList.remove('visible');
+      }
+    });
+    
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchResults.classList.remove('visible');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        searchResults.classList.remove('visible');
+      }
+    });
+    
+    // ===== PREFERENCES & LOCALSTORAGE =====
+    const preferencesToggle = document.getElementById('preferencesToggle');
+    const preferencesPanel = document.getElementById('preferencesPanel');
+    const prefToggles = {
+      asteroids: document.getElementById('prefAsteroids'),
+      orbits: document.getElementById('prefOrbits'),
+      shootingStars: document.getElementById('prefShootingStars'),
+      nebula: document.getElementById('prefNebula'),
+      reducedMotion: document.getElementById('prefReducedMotion')
+    };
+    
+    function loadPreferences() {
+      const saved = JSON.parse(localStorage.getItem('orbitWorldPrefs') || '{}');
+      Object.keys(prefToggles).forEach(key => {
+        const value = saved[key] !== undefined ? saved[key] : (key !== 'reducedMotion');
+        prefToggles[key].classList.toggle('active', value);
+        prefToggles[key].setAttribute('aria-checked', value);
+        applyPreference(key, value);
+      });
+    }
+    
+    function savePreferences() {
+      const prefs = {};
+      Object.keys(prefToggles).forEach(key => {
+        prefs[key] = prefToggles[key].classList.contains('active');
+      });
+      localStorage.setItem('orbitWorldPrefs', JSON.stringify(prefs));
+    }
+    
+    function applyPreference(key, value) {
+      switch(key) {
+        case 'asteroids':
+          document.querySelector('.asteroid-belt').style.display = value ? 'block' : 'none';
+          break;
+        case 'orbits':
+          document.querySelector('.orbit-lines').style.display = value ? 'block' : 'none';
+          break;
+        case 'shootingStars':
+          document.querySelectorAll('.shooting-star').forEach(el => el.style.display = value ? 'block' : 'none');
+          break;
+        case 'nebula':
+          document.querySelector('.nebula').style.display = value ? 'block' : 'none';
+          break;
+        case 'reducedMotion':
+          document.body.style.setProperty('--animation-speed', value ? '0s' : '');
+          document.querySelectorAll('.asteroid, .nebula-cloud, .shooting-star, .stars').forEach(el => {
+            el.style.animationPlayState = value ? 'paused' : 'running';
+          });
+          break;
+      }
+    }
+    
+    preferencesToggle.addEventListener('click', () => {
+      preferencesPanel.classList.toggle('visible');
+    });
+    
+    Object.entries(prefToggles).forEach(([key, toggle]) => {
+      toggle.addEventListener('click', () => {
+        const newValue = !toggle.classList.contains('active');
+        toggle.classList.toggle('active', newValue);
+        toggle.setAttribute('aria-checked', newValue);
+        applyPreference(key, newValue);
+        savePreferences();
+      });
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle.click();
+        }
+      });
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.preferences-controls') && !e.target.closest('.preferences-panel')) {
+        preferencesPanel.classList.remove('visible');
+      }
+    });
+    
+    loadPreferences();
+    
+    // ===== COPY LINK BUTTON =====
+    document.getElementById('copyLinkBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('https://orbit-world.vercel.app');
+        const btn = document.getElementById('copyLinkBtn');
+        btn.innerHTML = '<i class="fa fa-check"></i>';
+        setTimeout(() => { btn.innerHTML = '<i class="fa fa-link"></i>'; }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+    
+    // ===== SAVE LAST VIEWED PLANET =====
+    const lastPlanet = localStorage.getItem('orbitWorldLastPlanet');
+    if (lastPlanet) {
+      const planetRadio = document.getElementById(lastPlanet);
+      if (planetRadio) {
+        planetRadio.checked = true;
+        updateTourInfo(lastPlanet);
+      }
+    }
+    
+    document.querySelectorAll('input[name="planet"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        localStorage.setItem('orbitWorldLastPlanet', this.id);
+      });
+    });
   </script>
 </body>
 </html>
