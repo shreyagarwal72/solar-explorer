@@ -123,12 +123,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Mobile Redirect Script -->
+<!-- Device Detection Script -->
   <script>
-    // Redirect mobile users to mobile version
-    if (window.innerWidth <= 768 && !window.location.search.includes('desktop=true')) {
-      window.location.href = 'mobile.html';
-    }
+    // Detect device and handle seamless switching
+    (function() {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceDesktop = urlParams.get('desktop') === 'true';
+      const forceMobile = urlParams.get('mobile') === 'true';
+      
+      // Store preference in sessionStorage
+      if (forceDesktop) {
+        sessionStorage.setItem('orbitWorldView', 'desktop');
+      } else if (forceMobile) {
+        sessionStorage.setItem('orbitWorldView', 'mobile');
+      }
+      
+      const savedPreference = sessionStorage.getItem('orbitWorldView');
+      
+      // Redirect logic
+      if (isMobile && savedPreference !== 'desktop' && !forceDesktop) {
+        window.location.href = 'mobile.html';
+      }
+    })();
   </script>
 
   <!-- Loading Screen -->
@@ -239,6 +256,18 @@
     <span class="creator-label">Created by</span>
     <span class="creator-name">Vanshu Agarwal</span>
   </a>
+
+  <!-- Navigation Links -->
+  <div class="nav-links">
+    <a href="compare.html" class="nav-link" title="Compare Planets">
+      <i class="fa fa-th-large"></i>
+      <span>Compare</span>
+    </a>
+    <a href="mobile.html" class="nav-link mobile-link" title="Mobile Version">
+      <i class="fa fa-mobile"></i>
+      <span>Mobile</span>
+    </a>
+  </div>
 
   <!-- Copyright -->
   <div class="copyright">

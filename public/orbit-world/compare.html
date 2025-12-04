@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Planet Comparison | Orbit World - Compare Solar System Planets</title>
+  <meta name="title" content="Planet Comparison | Orbit World - Compare Solar System Planets">
+  <meta name="description" content="Compare all planets in our solar system side by side. View relative sizes, temperatures, orbital periods, and fascinating facts about Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune & Pluto.">
+  <meta name="author" content="Vanshu Agarwal - Nextup Studio">
+  <meta name="keywords" content="planet comparison, solar system planets, planet sizes, planet facts, astronomy comparison">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://orbitworld.app/orbit-world/compare.html">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://orbitworld.app/orbit-world/compare.html">
+  <meta property="og:title" content="Planet Comparison | Orbit World">
+  <meta property="og:description" content="Compare all planets in our solar system side by side with detailed facts and statistics.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=630&fit=crop">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Planet Comparison | Orbit World">
+  <meta name="twitter:description" content="Compare all planets in our solar system side by side.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=630&fit=crop">
+  
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="KYowygvsrbCJwszF1adTZ1WltiKdP6Mvx_YMChVKKBQ" />
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0a0a15">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(180deg, #0a0a15 0%, #1a1a2e 50%, #0a0a15 100%);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+    
+    /* Stars Background */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(2px 2px at 200px 50px, rgba(255,255,255,0.6), transparent);
+      background-size: 250px 250px;
+      animation: twinkle 4s ease-in-out infinite;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+    
+    /* Header */
+    .header {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 30px 20px;
+      background: linear-gradient(180deg, rgba(10,10,21,0.95) 0%, transparent 100%);
+    }
+    
+    .back-link {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+      border-color: #f39041;
+      color: #f39041;
+      background: rgba(243, 144, 65, 0.1);
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f39041, #e55f45);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    
+    /* Comparison Container */
+    .comparison-container {
+      position: relative;
+      z-index: 10;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    /* Size Comparison Section */
+    .size-comparison {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .section-title {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .planets-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+    
+    .planet-size {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .planet-sphere {
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .planet-sphere:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Planet sizes (scaled relative to Jupiter = 100px) */
+    .planet-sphere.mercury { width: 3.5px; height: 3.5px; background: linear-gradient(135deg, #9e9e9e, #616161); box-shadow: 0 0 10px rgba(158,158,158,0.5); }
+    .planet-sphere.venus { width: 8.6px; height: 8.6px; background: linear-gradient(135deg, #ffd54f, #ff8f00); box-shadow: 0 0 12px rgba(255,213,79,0.5); }
+    .planet-sphere.earth { width: 9px; height: 9px; background: linear-gradient(135deg, #4fc3f7, #1565c0); box-shadow: 0 0 12px rgba(79,195,247,0.5); }
+    .planet-sphere.mars { width: 4.8px; height: 4.8px; background: linear-gradient(135deg, #ef5350, #c62828); box-shadow: 0 0 10px rgba(239,83,80,0.5); }
+    .planet-sphere.jupiter { width: 100px; height: 100px; background: linear-gradient(135deg, #ffcc80, #f39041); box-shadow: 0 0 30px rgba(243,144,65,0.5); }
+    .planet-sphere.saturn { width: 83px; height: 83px; background: linear-gradient(135deg, #ffe082, #d4a574); box-shadow: 0 0 25px rgba(255,224,130,0.5); position: relative; }
+    .planet-sphere.saturn::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(70deg); width: 130px; height: 25px; border: 2px solid rgba(212,165,116,0.6); border-radius: 50%; pointer-events: none; }
+    .planet-sphere.uranus { width: 36px; height: 36px; background: linear-gradient(135deg, #80deea, #00acc1); box-shadow: 0 0 20px rgba(128,222,234,0.5); }
+    .planet-sphere.neptune { width: 35px; height: 35px; background: linear-gradient(135deg, #5c6bc0, #1a237e); box-shadow: 0 0 20px rgba(92,107,192,0.5); }
+    .planet-sphere.pluto { width: 1.7px; height: 1.7px; background: linear-gradient(135deg, #bcaaa4, #6d4c41); box-shadow: 0 0 8px rgba(188,170,164,0.5); }
+    
+    .planet-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Comparison Table */
+    .comparison-table {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    
+    .table-scroll {
+      overflow-x: auto;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+    
+    th, td {
+      padding: 16px 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    th {
+      background: rgba(243, 144, 65, 0.1);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #f39041;
+      font-weight: 600;
+    }
+    
+    td {
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    tr:hover td {
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .planet-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-start;
+      padding-left: 20px;
+    }
+    
+    .planet-mini {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    
+    .planet-mini.mercury { background: linear-gradient(135deg, #9e9e9e, #616161); }
+    .planet-mini.venus { background: linear-gradient(135deg, #ffd54f, #ff8f00); }
+    .planet-mini.earth { background: linear-gradient(135deg, #4fc3f7, #1565c0); }
+    .planet-mini.mars { background: linear-gradient(135deg, #ef5350, #c62828); }
+    .planet-mini.jupiter { background: linear-gradient(135deg, #ffcc80, #f39041); }
+    .planet-mini.saturn { background: linear-gradient(135deg, #ffe082, #d4a574); }
+    .planet-mini.uranus { background: linear-gradient(135deg, #80deea, #00acc1); }
+    .planet-mini.neptune { background: linear-gradient(135deg, #5c6bc0, #1a237e); }
+    .planet-mini.pluto { background: linear-gradient(135deg, #bcaaa4, #6d4c41); }
+    
+    .highlight {
+      color: #f39041;
+      font-weight: 600;
+    }
+    
+    /* Footer */
+    .footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 40px;
+    }
+    
+    .creator-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      margin-bottom: 15px;
+    }
+    
+    .creator-label {
+      font-size: 9px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .creator-name {
+      font-size: 14px;
+      color: #f39041;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+    
+    .copyright {
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px 15px 20px 15px;
+      }
+      
+      .back-link {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-bottom: 15px;
+        display: inline-flex;
+      }
+      
+      .logo {
+        font-size: 22px;
+      }
+      
+      .tagline {
+        font-size: 10px;
+      }
+      
+      .size-comparison {
+        padding: 20px 15px;
+      }
+      
+      .planets-row {
+        gap: 10px;
+      }
+      
+      .planet-label {
+        font-size: 8px;
+      }
+      
+      .section-title {
+        font-size: 12px;
+      }
+      
+      th, td {
+        padding: 12px 8px;
+        font-size: 11px;
+      }
+      
+      th {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  
+  <header class="header">
+    <a href="index.html" class="back-link">
+      <i class="fa fa-arrow-left"></i>
+      Back to Explorer
+    </a>
+    <h1 class="logo">Planet Comparison</h1>
+    <p class="tagline">Compare Our Solar System</p>
+  </header>
+  
+  <main class="comparison-container">
+    <!-- Size Comparison Visual -->
+    <section class="size-comparison">
+      <h2 class="section-title">Relative Planet Sizes</h2>
+      <div class="planets-row">
+        <div class="planet-size">
+          <div class="planet-sphere mercury"></div>
+          <span class="planet-label">Mercury</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere venus"></div>
+          <span class="planet-label">Venus</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere earth"></div>
+          <span class="planet-label">Earth</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere mars"></div>
+          <span class="planet-label">Mars</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere jupiter"></div>
+          <span class="planet-label">Jupiter</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere saturn"></div>
+          <span class="planet-label">Saturn</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere uranus"></div>
+          <span class="planet-label">Uranus</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere neptune"></div>
+          <span class="planet-label">Neptune</span>
+        </div>
+        <div class="planet-size">
+          <div class="planet-sphere pluto"></div>
+          <span class="planet-label">Pluto</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Comparison Table -->
+    <section class="comparison-table">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Distance from Sun</th>
+              <th>Diameter</th>
+              <th>Temperature</th>
+              <th>Orbital Period</th>
+              <th>Day Length</th>
+              <th>Moons</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini mercury"></div>Mercury</div></td>
+              <td>0.39 AU</td>
+              <td>4,879 km</td>
+              <td>-180°C to 430°C</td>
+              <td>88 days</td>
+              <td>59 Earth days</td>
+              <td>0</td>
+              <td>Terrestrial</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini venus"></div>Venus</div></td>
+              <td>0.72 AU</td>
+              <td>12,104 km</td>
+              <td class="highlight">465°C (Hottest)</td>
+              <td>225 days</td>
+              <td>243 Earth days</td>
+              <td>0</td>
+              <td>Terrestrial</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini earth"></div>Earth</div></td>
+              <td>1 AU</td>
+              <td>12,742 km</td>
+              <td>15°C (avg)</td>
+              <td>365.25 days</td>
+              <td>24 hours</td>
+              <td>1</td>
+              <td>Terrestrial</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini mars"></div>Mars</div></td>
+              <td>1.52 AU</td>
+              <td>6,779 km</td>
+              <td>-65°C (avg)</td>
+              <td>687 days</td>
+              <td>24h 37m</td>
+              <td>2</td>
+              <td>Terrestrial</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini jupiter"></div>Jupiter</div></td>
+              <td>5.2 AU</td>
+              <td class="highlight">139,820 km (Largest)</td>
+              <td>-110°C</td>
+              <td>11.9 years</td>
+              <td class="highlight">9h 56m (Fastest)</td>
+              <td class="highlight">95+ (Most)</td>
+              <td>Gas Giant</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini saturn"></div>Saturn</div></td>
+              <td>9.54 AU</td>
+              <td>116,460 km</td>
+              <td>-140°C</td>
+              <td>29.5 years</td>
+              <td>10h 42m</td>
+              <td>146</td>
+              <td>Gas Giant</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini uranus"></div>Uranus</div></td>
+              <td>19.2 AU</td>
+              <td>50,724 km</td>
+              <td>-195°C</td>
+              <td>84 years</td>
+              <td>17h 14m</td>
+              <td>28</td>
+              <td>Ice Giant</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini neptune"></div>Neptune</div></td>
+              <td>30.1 AU</td>
+              <td>49,244 km</td>
+              <td>-200°C</td>
+              <td>165 years</td>
+              <td>16h 6m</td>
+              <td>16</td>
+              <td>Ice Giant</td>
+            </tr>
+            <tr>
+              <td><div class="planet-cell"><div class="planet-mini pluto"></div>Pluto</div></td>
+              <td>39.5 AU</td>
+              <td class="highlight">2,377 km (Smallest)</td>
+              <td class="highlight">-230°C (Coldest)</td>
+              <td class="highlight">248 years (Longest)</td>
+              <td>6.4 Earth days</td>
+              <td>5</td>
+              <td>Dwarf Planet</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <a href="https://vanshubhai.vercel.app" target="_blank" rel="noopener noreferrer" class="creator-link">
+      <span class="creator-label">Created by</span>
+      <span class="creator-name">Vanshu Agarwal</span>
+    </a>
+    <p class="copyright">© 2025 Nextup Studio. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
