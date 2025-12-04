@@ -3292,6 +3292,11 @@ body .panel p {
   border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
+.ai-text strong {
+  color: #f39041;
+  font-weight: 600;
+}
+
 /* Typing indicator */
 .ai-typing .ai-text {
   padding: 15px 20px;
