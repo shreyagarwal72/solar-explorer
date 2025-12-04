@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/orbit-world/(.*)", "destination": "/orbit-world/$1" },
+    { "source": "/((?!orbit-world/).*)", "destination": "/index.html" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
