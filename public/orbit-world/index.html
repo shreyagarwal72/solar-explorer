@@ -48,6 +48,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-planet"></div>
+    <div class="loader-ring"></div>
+    <div class="loader-text">Launching into Space...</div>
+  </div>
+
+  <!-- Starfield Background -->
+  <div class="starfield">
+    <div class="stars stars-small"></div>
+    <div class="stars stars-medium"></div>
+    <div class="stars stars-large"></div>
+  </div>
+
   <h1 class='logo'>
     Orbit World
     <span>Explore the Solar System</span>
@@ -264,6 +278,7 @@
     </div>
     <div class='solar_systm'>
       <div class='planet saturn'>
+        <div class='saturn-rings'></div>
         <div class='moon titan'>
           <h3>Moon</h3>
           <h2>Titan</h2>
@@ -444,9 +459,9 @@
     <h2>Jupiter is the fourth brightest object in the solar system.</h2>
     <p>Only the Sun, Moon and Venus are brighter. It is one of five planets visible to the naked eye from Earth.</p>
     <h2>Jupiter has the shortest day of all the planets.</h2>
-    <p>It turns on its axis once every 9 hours and 55 minutes.</p>
-    <h2>Jupiter orbits the Sun once every 11.8 Earth years.</h2>
-    <p>From our point of view on Earth, it appears to move slowly in the sky.</p>
+    <p>It turns on its axis once every 9 hours and 55 minutes. The rapid rotation causes the planet to be flattened at the poles.</p>
+    <h2>Jupiter has unique cloud features.</h2>
+    <p>The upper atmosphere is divided into cloud belts and zones. They are made primarily of ammonia crystals, sulfur, and mixtures of the two compounds.</p>
     <br>
   </div>
   <input class='read' id='readSaturn' type='radio' name='saturnRead'>
@@ -454,14 +469,14 @@
   <input class='read' id='closeSaturn' type='radio' name='saturnRead'>
   <div class='panel'>
     <h1>Saturn</h1>
-    <p>Saturn is the sixth planet from the sun and the second largest planet in the solar system. Saturn was the Roman name for Cronus, the lord of the Titans in Greek mythology.</p>
-    <img src='http://ak0.picdn.net/shutterstock/videos/4049260/thumb/1.jpg' alt='Saturn'>
-    <h2>Saturn can be seen with the naked eye.</h2>
-    <p>It is the fifth brightest object in the solar system and is also easily studied through binoculars or a small telescope.</p>
+    <p>Saturn is the sixth planet from the Sun and the second largest planet in the solar system. Saturn was the Roman name for Cronus, the lord of the Titans.</p>
+    <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/38_saturn_1600x900.jpg' alt='Saturn'>
+    <h2>Saturn has the most extensive rings in the solar system.</h2>
+    <p>The rings are made mostly of chunks of ice and carbonaceous dust. They stretch out more than 120,700 km from the planet but are only about 20 meters thick.</p>
+    <h2>Saturn has 82 known moons.</h2>
+    <p>Titan, the largest, comprises more than 90% of the mass in orbit around Saturn, including the rings.</p>
     <h2>Saturn is the flattest planet.</h2>
-    <p>Its polar diameter is 90% of its equatorial diameter, due to its low density and fast rotation.</p>
-    <h2>Saturn orbits the Sun once every 29.4 Earth years.</h2>
-    <p>Its slow movement earned it the nickname "Lubadsagush" from the ancient Assyrians, meaning "oldest of the old".</p>
+    <p>Its polar diameter is 90% of its equatorial diameter, due to low density and fast rotation.</p>
     <br>
   </div>
   <input class='read' id='readUranus' type='radio' name='uranusRead'>
@@ -469,14 +484,14 @@
   <input class='read' id='closeUranus' type='radio' name='uranusRead'>
   <div class='panel'>
     <h1>Uranus</h1>
-    <p>Uranus is the seventh planet from the sun and the first to be discovered by scientists. The planet is notable for its dramatic tilt, which causes its axis to point nearly directly at the sun.</p>
-    <img src='http://www.cosmosup.com/wp-content/uploads/2016/02/Uranus-Facts-About-the-Planet-Uranus-700x325.jpg' alt='Uranus'>
-    <h2>Uranus was officially discovered in 1781.</h2>
-    <p>It is too dim to have been seen by the ancients. At first Herschel thought it was a comet.</p>
+    <p>Uranus is the seventh planet from the Sun. It's not visible to the naked eye, and became the first planet discovered with the use of a telescope.</p>
+    <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/69_uranus_redspot.jpg' alt='Uranus'>
     <h2>Uranus turns on its axis once every 17 hours, 14 minutes.</h2>
     <p>The planet rotates in a retrograde direction, opposite to the way Earth and most other planets turn.</p>
+    <h2>Uranus makes one trip around the Sun every 84 Earth years.</h2>
+    <p>During some parts of its orbit one or the other of its poles point directly at the Sun and get about 42 years of direct sunlight.</p>
     <h2>Uranus is often referred to as an "ice giant" planet.</h2>
-    <p>Like the other gas giants, it has a hydrogen upper layer with helium mixed in.</p>
+    <p>Like other gas giants, it has a hydrogen upper layer, which has helium mixed in. Below that is an icy "mantle," which surrounds a rock and ice core.</p>
     <br>
   </div>
   <input class='read' id='readNeptune' type='radio' name='neptuneRead'>
@@ -484,14 +499,14 @@
   <input class='read' id='closeNeptune' type='radio' name='neptuneRead'>
   <div class='panel'>
     <h1>Neptune</h1>
-    <p>Neptune is the eighth planet from the sun. It was the first planet to get its existence predicted by mathematical calculations before it was actually seen through a telescope.</p>
-    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy8Dd14tbXAzh1iz-EJl9tulRwH7Bb-SxX6sXpKFDbqb-NKwpE' alt='Neptune'>
-    <h2>Neptune was not known to the ancients.</h2>
-    <p>It is not visible to the naked eye and was first observed in 1846.</p>
-    <h2>Neptune spins on its axis very rapidly.</h2>
-    <p>Its equatorial clouds take 18 hours to make one rotation.</p>
+    <p>Neptune is the eighth and farthest known planet from the Sun. It was the first planet located through mathematical predictions rather than regular observations of the sky.</p>
+    <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/90_neptune_702.jpg' alt='Neptune'>
+    <h2>Neptune has the strongest winds in the Solar System.</h2>
+    <p>Winds whip clouds of frozen methane across the planet at speeds of more than 2,000 km/hour.</p>
     <h2>Neptune is the smallest of the ice giants.</h2>
-    <p>Despite being smaller than Uranus, Neptune has a greater mass.</p>
+    <p>Despite being smaller than Uranus, Neptune has a greater mass. Below its heavy atmosphere, Uranus is made of layers of hydrogen, helium, and methane gases.</p>
+    <h2>Neptune has a very thin collection of rings.</h2>
+    <p>They are likely made up of ice particles mixed with dust grains and possibly coated with a carbon-based substance.</p>
     <br>
   </div>
   <input class='read' id='readPluto' type='radio' name='plutoRead'>
@@ -499,14 +514,14 @@
   <input class='read' id='closePluto' type='radio' name='plutoRead'>
   <div class='panel'>
     <h1>Pluto</h1>
-    <p>Pluto, once considered the ninth and most distant planet from the sun, is now the largest known dwarf planet in the solar system.</p>
-    <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/asd.jpeg' alt='Pluto'>
-    <h2>Pluto is named after the Greek god of the underworld.</h2>
-    <p>This is a later name for the more well known Hades and was proposed by Venetia Burney, an eleven year old schoolgirl from Oxford, England.</p>
-    <h2>Pluto was reclassified as a dwarf planet in 2006.</h2>
-    <p>The International Astronomical Union formalized the definition of a planet and Pluto did not meet the criteria.</p>
+    <p>Pluto, once considered the ninth planet, is now classified as a dwarf planet. It was discovered in 1930 by Clyde Tombaugh at the Lowell Observatory.</p>
+    <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/780_pluto_702.jpg' alt='Pluto'>
+    <h2>Pluto was reclassified from a planet to a dwarf planet in 2006.</h2>
+    <p>This occurred when the IAU created a new definition for "planet" that Pluto didn't meet.</p>
     <h2>Pluto has five known moons.</h2>
-    <p>The largest is Charon, which is so big that Pluto and Charon are sometimes referred to as a double dwarf planet system.</p>
+    <p>The largest is Charon, discovered in 1978. It is so big that Pluto and Charon are sometimes referred to as a double dwarf planet system.</p>
+    <h2>Pluto has an eccentric and inclined orbit.</h2>
+    <p>It takes 248 Earth years for Pluto to complete one orbit around the Sun. Its orbital path doesn't lie in the same plane as the eight planets.</p>
     <br>
   </div>
 </body>
