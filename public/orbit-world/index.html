@@ -49,6 +49,9 @@
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=630&fit=crop">
   <meta name="twitter:creator" content="@vanshuagarwal">
   
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="KYowygvsrbCJwszF1adTZ1WltiKdP6Mvx_YMChVKKBQ" />
+  
   <!-- Theme Color -->
   <meta name="theme-color" content="#0d0d1a">
   <meta name="msapplication-TileColor" content="#0d0d1a">
@@ -175,6 +178,44 @@
     </div>
   </div>
 
+  <!-- AI Assistant Controls -->
+  <div class="ai-controls">
+    <button class="ai-btn" id="aiToggle" title="Toggle AI Assistant">
+      <i class="fa fa-rocket" id="aiIcon"></i>
+    </button>
+    <span class="ai-label">AI Guide</span>
+  </div>
+
+  <!-- AI Chat Panel -->
+  <div class="ai-chat-panel" id="aiChatPanel">
+    <div class="ai-chat-header">
+      <div class="ai-header-info">
+        <i class="fa fa-rocket"></i>
+        <span>Orbit World AI</span>
+      </div>
+      <button class="ai-close-btn" id="aiCloseBtn">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="ai-chat-messages" id="aiChatMessages">
+      <div class="ai-message ai-bot">
+        <div class="ai-avatar"><i class="fa fa-rocket"></i></div>
+        <div class="ai-text">Welcome to Orbit World! I'm your AI space guide. Ask me anything about the planets, our solar system, or how to use this interactive explorer!</div>
+      </div>
+    </div>
+    <div class="ai-chat-input-wrapper">
+      <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about planets, the solar system..." />
+      <button class="ai-send-btn" id="aiSendBtn">
+        <i class="fa fa-paper-plane"></i>
+      </button>
+    </div>
+    <div class="ai-quick-questions">
+      <button class="ai-quick-btn" data-question="Tell me about the current planet I'm viewing">Current Planet</button>
+      <button class="ai-quick-btn" data-question="What are the website features?">Website Features</button>
+      <button class="ai-quick-btn" data-question="What is the largest planet?">Largest Planet</button>
+    </div>
+  </div>
+
   <!-- Audio Controls -->
   <div class="audio-controls">
     <button class="audio-btn" id="audioToggle" title="Toggle ambient sound">
@@ -182,12 +223,6 @@
     </button>
     <span class="audio-label">Sound</span>
   </div>
-  
-  <!-- Ambient Audio - Using reliable source -->
-  <audio id="ambientAudio" loop preload="auto">
-    <source src="https://www.soundjay.com/nature/sounds/wind-howl-1.mp3" type="audio/mpeg">
-    <source src="https://freesound.org/data/previews/463/463903_4397472-lq.mp3" type="audio/mpeg">
-  </audio>
 
   <!-- Keyboard Controls Hint -->
   <div class="keyboard-hint">
@@ -769,8 +804,12 @@
     <br>
   </div>
 
-  <!-- JavaScript for Keyboard Controls, Audio & Guided Tour -->
+  <!-- JavaScript for Keyboard Controls, Audio, Guided Tour & AI -->
   <script>
+    // Configuration
+    const SUPABASE_URL = 'https://otfdkkomxoxdneekcdfc.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90ZmRra29teG94ZG5lZWtjZGZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3OTI2MDYsImV4cCI6MjA4MDM2ODYwNn0.9z_Ttm3KUzJzl3j094NYkonZy4aKDzK-8ikkcNSXoGw';
+
     // Planet data
     const planets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
     const planetFacts = {
@@ -792,6 +831,11 @@
         if (radio && radio.checked) return i;
       }
       return 2;
+    }
+
+    // Get current planet name
+    function getCurrentPlanetName() {
+      return planets[getCurrentPlanetIndex()];
     }
     
     // Navigate to planet
@@ -816,6 +860,9 @@
     
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
+      // Don't navigate if typing in AI chat
+      if (e.target.id === 'aiChatInput') return;
+      
       const currentIndex = getCurrentPlanetIndex();
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
@@ -829,99 +876,115 @@
       }
     });
     
-    // Audio System with Web Audio API fallback
+    // ===== IMPROVED AUDIO SYSTEM =====
     const audioToggle = document.getElementById('audioToggle');
     const audioIcon = document.getElementById('audioIcon');
     let audioContext = null;
-    let oscillator = null;
-    let gainNode = null;
+    let audioNodes = null;
     let isAudioPlaying = false;
     
-    // Create ambient drone sound using Web Audio API
     function createAmbientSound() {
       try {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         
-        // Create multiple oscillators for rich ambient sound
-        const osc1 = audioContext.createOscillator();
-        const osc2 = audioContext.createOscillator();
-        const osc3 = audioContext.createOscillator();
+        // Master gain for volume control
+        const masterGain = audioContext.createGain();
+        masterGain.gain.setValueAtTime(0, audioContext.currentTime);
+        masterGain.connect(audioContext.destination);
         
-        gainNode = audioContext.createGain();
-        const filter = audioContext.createBiquadFilter();
+        // Create oscillators for layered ambient sound
+        const oscillators = [];
+        const frequencies = [55, 82.5, 110, 165]; // A1, E2, A2, E3 for space drone
         
-        // Configure oscillators for space-like drone
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(60, audioContext.currentTime);
+        frequencies.forEach((freq, i) => {
+          const osc = audioContext.createOscillator();
+          const oscGain = audioContext.createGain();
+          
+          osc.type = i < 2 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+          oscGain.gain.setValueAtTime(0.03 - (i * 0.005), audioContext.currentTime);
+          
+          osc.connect(oscGain);
+          oscGain.connect(masterGain);
+          osc.start();
+          
+          oscillators.push({ osc, gain: oscGain });
+        });
         
-        osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(90, audioContext.currentTime);
+        // Add noise for texture
+        const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 2, audioContext.sampleRate);
+        const noiseData = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < noiseData.length; i++) {
+          noiseData[i] = Math.random() * 2 - 1;
+        }
         
-        osc3.type = 'triangle';
-        osc3.frequency.setValueAtTime(120, audioContext.currentTime);
+        const noiseSource = audioContext.createBufferSource();
+        noiseSource.buffer = noiseBuffer;
+        noiseSource.loop = true;
         
-        // Low pass filter for smooth sound
-        filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(200, audioContext.currentTime);
+        const noiseFilter = audioContext.createBiquadFilter();
+        noiseFilter.type = 'lowpass';
+        noiseFilter.frequency.setValueAtTime(300, audioContext.currentTime);
         
-        // Very low volume for ambient effect
-        gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+        const noiseGain = audioContext.createGain();
+        noiseGain.gain.setValueAtTime(0.02, audioContext.currentTime);
         
-        // Connect nodes
-        osc1.connect(filter);
-        osc2.connect(filter);
-        osc3.connect(filter);
-        filter.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        noiseSource.connect(noiseFilter);
+        noiseFilter.connect(noiseGain);
+        noiseGain.connect(masterGain);
+        noiseSource.start();
         
-        // Start oscillators
-        osc1.start();
-        osc2.start();
-        osc3.start();
-        
-        // Add slow frequency modulation for ethereal effect
+        // LFO for subtle movement
         const lfo = audioContext.createOscillator();
         const lfoGain = audioContext.createGain();
-        lfo.frequency.setValueAtTime(0.1, audioContext.currentTime);
-        lfoGain.gain.setValueAtTime(5, audioContext.currentTime);
+        lfo.frequency.setValueAtTime(0.05, audioContext.currentTime);
+        lfoGain.gain.setValueAtTime(3, audioContext.currentTime);
         lfo.connect(lfoGain);
-        lfoGain.connect(osc1.frequency);
+        lfoGain.connect(oscillators[0].osc.frequency);
         lfo.start();
         
-        oscillator = { osc1, osc2, osc3, lfo };
+        audioNodes = { masterGain, oscillators, noiseSource, lfo };
+        
+        // Fade in
+        masterGain.gain.linearRampToValueAtTime(1, audioContext.currentTime + 1);
+        
         return true;
       } catch (e) {
-        console.log('Web Audio API not supported');
+        console.error('Audio creation failed:', e);
         return false;
       }
     }
     
-    audioToggle.addEventListener('click', function() {
+    audioToggle.addEventListener('click', async function() {
       if (isAudioPlaying) {
-        if (audioContext) {
-          gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.5);
+        // Fade out and suspend
+        if (audioNodes && audioContext) {
+          audioNodes.masterGain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.5);
           setTimeout(() => {
-            if (audioContext) {
+            if (audioContext && audioContext.state === 'running') {
               audioContext.suspend();
             }
-          }, 500);
+          }, 600);
         }
         audioIcon.className = 'fa fa-volume-off';
         audioToggle.classList.remove('playing');
       } else {
         if (!audioContext) {
-          createAmbientSound();
+          if (createAmbientSound()) {
+            audioIcon.className = 'fa fa-volume-up';
+            audioToggle.classList.add('playing');
+          }
         } else {
-          audioContext.resume();
-          gainNode.gain.linearRampToValueAtTime(0.08, audioContext.currentTime + 0.5);
+          await audioContext.resume();
+          audioNodes.masterGain.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.5);
+          audioIcon.className = 'fa fa-volume-up';
+          audioToggle.classList.add('playing');
         }
-        audioIcon.className = 'fa fa-volume-up';
-        audioToggle.classList.add('playing');
       }
       isAudioPlaying = !isAudioPlaying;
     });
     
-    // Guided Tour System
+    // ===== GUIDED TOUR SYSTEM =====
     const tourToggle = document.getElementById('tourToggle');
     const tourIcon = document.getElementById('tourIcon');
     const tourInfo = document.getElementById('tourInfo');
@@ -929,7 +992,7 @@
     let isTourActive = false;
     let tourInterval = null;
     let currentTourIndex = 0;
-    const tourDuration = 5000; // 5 seconds per planet
+    const tourDuration = 5000;
     
     function startTour() {
       isTourActive = true;
@@ -938,7 +1001,6 @@
       tourInfo.classList.add('visible');
       currentTourIndex = getCurrentPlanetIndex();
       
-      // Update immediately
       updateTourInfo(planets[currentTourIndex]);
       updateProgress();
       
@@ -973,16 +1035,135 @@
       }
     });
     
-    // Initialize tour info on page load
+    // ===== AI ASSISTANT SYSTEM =====
+    const aiToggle = document.getElementById('aiToggle');
+    const aiChatPanel = document.getElementById('aiChatPanel');
+    const aiCloseBtn = document.getElementById('aiCloseBtn');
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiSendBtn = document.getElementById('aiSendBtn');
+    const aiChatMessages = document.getElementById('aiChatMessages');
+    let isAiPanelOpen = false;
+    
+    function toggleAiPanel() {
+      isAiPanelOpen = !isAiPanelOpen;
+      aiChatPanel.classList.toggle('visible', isAiPanelOpen);
+      aiToggle.classList.toggle('active', isAiPanelOpen);
+      if (isAiPanelOpen) {
+        aiChatInput.focus();
+      }
+    }
+    
+    aiToggle.addEventListener('click', toggleAiPanel);
+    aiCloseBtn.addEventListener('click', toggleAiPanel);
+    
+    function addMessage(text, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+      messageDiv.innerHTML = `
+        <div class="ai-avatar"><i class="fa ${isUser ? 'fa-user' : 'fa-rocket'}"></i></div>
+        <div class="ai-text">${text}</div>
+      `;
+      aiChatMessages.appendChild(messageDiv);
+      aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+      return messageDiv;
+    }
+    
+    function addTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'ai-message ai-bot ai-typing';
+      typingDiv.innerHTML = `
+        <div class="ai-avatar"><i class="fa fa-rocket"></i></div>
+        <div class="ai-text"><span class="typing-dots"><span>.</span><span>.</span><span>.</span></span></div>
+      `;
+      aiChatMessages.appendChild(typingDiv);
+      aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+      return typingDiv;
+    }
+    
+    async function sendAiMessage(message) {
+      if (!message.trim()) return;
+      
+      addMessage(message, true);
+      aiChatInput.value = '';
+      
+      const typingIndicator = addTypingIndicator();
+      
+      try {
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/orbit-ai-chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            message: message,
+            context: { currentPlanet: getCurrentPlanetName() }
+          }),
+        });
+        
+        typingIndicator.remove();
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          addMessage(errorData.error || 'Sorry, I encountered an error. Please try again.');
+          return;
+        }
+        
+        const data = await response.json();
+        addMessage(data.response);
+      } catch (error) {
+        typingIndicator.remove();
+        console.error('AI chat error:', error);
+        addMessage('Unable to connect to the AI service. Please check your connection and try again.');
+      }
+    }
+    
+    aiSendBtn.addEventListener('click', () => sendAiMessage(aiChatInput.value));
+    aiChatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendAiMessage(aiChatInput.value);
+    });
+    
+    // Quick question buttons
+    document.querySelectorAll('.ai-quick-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sendAiMessage(btn.dataset.question);
+      });
+    });
+    
+    // ===== READ MORE AI INTEGRATION =====
+    // When read more panel opens, show AI suggestion
+    document.querySelectorAll('input[name$="Read"]').forEach(input => {
+      input.addEventListener('change', function() {
+        if (this.id.startsWith('read') && this.checked) {
+          const planetName = this.id.replace('read', '');
+          // Auto-suggest AI when opening read more
+          if (!isAiPanelOpen) {
+            setTimeout(() => {
+              const aiSuggestion = document.createElement('div');
+              aiSuggestion.className = 'ai-panel-suggestion';
+              aiSuggestion.innerHTML = `
+                <button onclick="document.getElementById('aiToggle').click(); sendAiMessage('Tell me more interesting facts about ${planetName}'); this.parentElement.remove();">
+                  <i class="fa fa-rocket"></i> Ask AI about ${planetName}
+                </button>
+              `;
+              const panel = this.nextElementSibling?.nextElementSibling?.nextElementSibling;
+              if (panel && panel.classList.contains('panel') && !panel.querySelector('.ai-panel-suggestion')) {
+                panel.insertBefore(aiSuggestion, panel.firstChild.nextSibling);
+              }
+            }, 300);
+          }
+        }
+      });
+    });
+    
+    // Initialize
     updateTourInfo(planets[getCurrentPlanetIndex()]);
     
-    // Hide keyboard hint on mobile
     if (window.innerWidth <= 768) {
       const keyboardHint = document.querySelector('.keyboard-hint');
       if (keyboardHint) keyboardHint.style.display = 'none';
     }
     
-    // Stop tour when user manually selects a planet
     document.querySelectorAll('input[name="planet"]').forEach(radio => {
       radio.addEventListener('change', function() {
         if (isTourActive && !tourInterval) return;
