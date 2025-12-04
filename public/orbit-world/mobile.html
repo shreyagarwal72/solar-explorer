@@ -138,6 +138,27 @@
       color: #f39041;
     }
     
+    .compare-link {
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .compare-link:hover {
+      border-color: #f39041;
+      color: #f39041;
+    }
+    
     /* Planet Carousel */
     .carousel-container {
       position: relative;
@@ -406,7 +427,11 @@
   <div class="stars"></div>
   
   <header class="header">
-    <a href="index.html" class="desktop-link">
+    <a href="compare.html" class="compare-link">
+      <i class="fa fa-th-large"></i>
+      Compare
+    </a>
+    <a href="index.html?desktop=true" class="desktop-link">
       <i class="fa fa-desktop"></i>
       Full Version
     </a>
