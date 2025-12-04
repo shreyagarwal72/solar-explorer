@@ -53,11 +53,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Mobile Disclaimer -->
+  <div class="mobile-disclaimer">
+    <div class="disclaimer-content">
+      <i class="fa fa-desktop"></i>
+      <p>For the best experience, please view on a desktop or tablet device</p>
+      <button class="dismiss-btn" onclick="this.parentElement.parentElement.style.display='none'">Got it</button>
+    </div>
+  </div>
+
   <!-- Loading Screen -->
   <div class="loader">
     <div class="loader-planet"></div>
     <div class="loader-ring"></div>
     <div class="loader-text">Launching into Space...</div>
+  </div>
+
+  <!-- Nebula Effect -->
+  <div class="nebula">
+    <div class="nebula-cloud nebula-1"></div>
+    <div class="nebula-cloud nebula-2"></div>
+    <div class="nebula-cloud nebula-3"></div>
   </div>
 
   <!-- Starfield Background with Parallax -->
@@ -73,10 +89,27 @@
     <div class="shooting-star shooting-star-5"></div>
   </div>
 
+  <!-- Audio Controls -->
+  <div class="audio-controls">
+    <button class="audio-btn" id="audioToggle" title="Toggle ambient sound">
+      <i class="fa fa-volume-off" id="audioIcon"></i>
+    </button>
+    <span class="audio-label">Sound</span>
+  </div>
+  <audio id="ambientAudio" loop>
+    <source src="https://assets.mixkit.co/music/preview/mixkit-space-ambient-655.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Keyboard Controls Hint -->
+  <div class="keyboard-hint">
+    <span><i class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> Navigate Planets</span>
+  </div>
+
   <h1 class='logo'>
     Orbit World
     <span>Explore the Solar System</span>
   </h1>
+
 
   <!-- Creator Info -->
   <a href="https://vanshubhai.vercel.app" target="_blank" rel="noopener noreferrer" class="creator-info">
@@ -646,5 +679,67 @@
     <p>It takes 248 Earth years for Pluto to complete one orbit around the Sun. Its orbital path doesn't lie in the same plane as the eight planets.</p>
     <br>
   </div>
+
+  <!-- JavaScript for Keyboard Controls & Audio -->
+  <script>
+    // Planet order array
+    const planets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+    
+    // Get current planet index
+    function getCurrentPlanetIndex() {
+      for (let i = 0; i < planets.length; i++) {
+        const radio = document.getElementById(planets[i]);
+        if (radio && radio.checked) return i;
+      }
+      return 2; // Default to Earth
+    }
+    
+    // Navigate to planet
+    function navigateToPlanet(index) {
+      if (index >= 0 && index < planets.length) {
+        const radio = document.getElementById(planets[index]);
+        if (radio) radio.click();
+      }
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      const currentIndex = getCurrentPlanetIndex();
+      
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateToPlanet(currentIndex - 1);
+      } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateToPlanet(currentIndex + 1);
+      }
+    });
+    
+    // Audio toggle
+    const audioToggle = document.getElementById('audioToggle');
+    const ambientAudio = document.getElementById('ambientAudio');
+    const audioIcon = document.getElementById('audioIcon');
+    let isPlaying = false;
+    
+    audioToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        ambientAudio.pause();
+        audioIcon.className = 'fa fa-volume-off';
+        audioToggle.classList.remove('playing');
+      } else {
+        ambientAudio.volume = 0.3;
+        ambientAudio.play();
+        audioIcon.className = 'fa fa-volume-up';
+        audioToggle.classList.add('playing');
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Hide keyboard hint on mobile
+    if (window.innerWidth <= 768) {
+      const keyboardHint = document.querySelector('.keyboard-hint');
+      if (keyboardHint) keyboardHint.style.display = 'none';
+    }
+  </script>
 </body>
 </html>
