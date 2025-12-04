@@ -3,12 +3,12 @@
 <div align="center">
 
 ![Orbit World](https://img.shields.io/badge/Orbit_World-Space_Explorer-orange?style=for-the-badge&logo=planet)
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=flat-square&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?style=flat-square&logo=tailwindcss)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![No JavaScript](https://img.shields.io/badge/JavaScript-None_Required-success?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**An immersive, interactive solar system explorer built with modern web technologies.**
+**An immersive, interactive solar system explorer built with pure HTML and CSS. No JavaScript required!**
 
 [Live Demo](https://lovable.dev/projects/6bd8f616-d80a-47f7-bc08-0dfb891abc9e) · [Report Bug](https://github.com/yourusername/orbit-world/issues) · [Request Feature](https://github.com/yourusername/orbit-world/issues)
 
@@ -18,65 +18,45 @@
 
 ## ✨ Features
 
-- 🪐 **9 Celestial Bodies** - Explore Mercury through Pluto with accurate astronomical data
-- 🌙 **Moon Systems** - Discover the major moons orbiting each planet
-- 🎨 **3D Perspective** - Immersive CSS-based 3D transformations
-- 📖 **Rich Information** - Detailed descriptions and facts about each celestial body
-- ⚡ **Smooth Animations** - Fluid transitions and orbital animations
-- 📱 **Responsive Design** - Optimized for all screen sizes
-- 🎯 **SEO Optimized** - Full meta tags and semantic HTML
+- 🪐 **9 Celestial Bodies** — Explore Mercury through Pluto with accurate astronomical data
+- 🌙 **Moon Systems** — Discover the major moons orbiting each planet
+- 🎨 **Pure CSS 3D** — Immersive 3D transformations without a single line of JavaScript
+- 📖 **Rich Information** — Detailed descriptions and facts about each celestial body
+- ⚡ **CSS Animations** — Smooth transitions and planetary rotation effects
+- 📱 **Responsive** — Works on desktop browsers
+- 🎯 **SEO Optimized** — Full meta tags, Open Graph, and structured data
 
-## 🚀 Quick Start
+## 🚀 How It Works
 
-### Prerequisites
+This project demonstrates the incredible power of CSS:
 
-- Node.js 18+ 
-- npm or yarn
+- **Radio Button Hack** — Planet selection is controlled entirely through CSS `:checked` selectors
+- **CSS Transforms** — 3D perspective and translateZ create depth illusion
+- **Sibling Selectors** — Complex state management using `+` and `~` combinators
+- **CSS Animations** — Keyframe animations for planet rotation
 
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/orbit-world.git
-
-# Navigate to project directory
-cd orbit-world
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+```css
+/* Example: Planet selection using CSS only */
+input.planet3:checked + label + div .solar_systm:nth-of-type(3) .planet {
+  transform: translateZ(0px) translateY(0) rotatex(4deg) scaleX(0.89);
+  opacity: 1;
+  animation: planet 60s infinite linear;
+}
 ```
-
-The app will be available at `http://localhost:8080`
-
-## 🛠️ Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| **React 18** | UI Framework |
-| **TypeScript** | Type Safety |
-| **Tailwind CSS** | Styling |
-| **Vite** | Build Tool |
-| **React Router** | Navigation |
 
 ## 📁 Project Structure
 
 ```
 orbit-world/
 ├── public/
-│   ├── favicon.svg         # Custom space favicon
+│   ├── orbit-world/
+│   │   ├── index.html      # Main HTML file
+│   │   └── style.css       # All CSS styles (2000+ lines!)
+│   ├── favicon.svg         # Custom planet favicon
 │   └── robots.txt          # SEO configuration
 ├── src/
-│   ├── components/
-│   │   ├── ui/             # Shadcn components
-│   │   └── solar-system/   # Solar system components
-│   ├── pages/
-│   │   └── Index.tsx       # Main page
-│   ├── styles/
-│   │   └── solar-system.css # Custom CSS animations
-│   └── App.tsx             # Root component
+│   └── pages/
+│       └── Index.tsx       # React wrapper (iframe)
 └── README.md
 ```
 
@@ -84,35 +64,48 @@ orbit-world/
 
 | Planet | Distance from Sun | Key Feature |
 |--------|-------------------|-------------|
-| Mercury | 0.39 AU | Fastest orbit |
-| Venus | 0.723 AU | Hottest planet |
-| Earth | 1 AU | Our home |
-| Mars | 1.524 AU | The Red Planet |
-| Jupiter | 5.203 AU | Largest planet |
-| Saturn | 9.539 AU | Famous rings |
-| Uranus | 19.18 AU | Sideways spin |
-| Neptune | 30.06 AU | Windiest planet |
-| Pluto | 39.5 AU | Dwarf planet |
+| Mercury | 0.39 AU | Fastest orbit — 88 Earth days |
+| Venus | 0.723 AU | Hottest planet — 465°C surface |
+| Earth | 1 AU | Our home — the only known life |
+| Mars | 1.524 AU | The Red Planet — tallest mountain |
+| Jupiter | 5.203 AU | Largest planet — Great Red Spot |
+| Saturn | 9.539 AU | Famous rings — 82 moons |
+| Uranus | 19.18 AU | Sideways spin — ice giant |
+| Neptune | 30.06 AU | Windiest planet — 2000 km/h |
+| Pluto | 39.5 AU | Dwarf planet — heart-shaped glacier |
 
 ## 🎨 Design Philosophy
 
-Orbit World embraces a **cosmic aesthetic** with:
+Orbit World embraces a **cosmic aesthetic**:
 
-- Deep space backgrounds with subtle star fields
-- Glowing planetary atmospheres
-- Smooth orbital animations
-- High contrast typography for readability
-- Warm accent colors inspired by real planet hues
+- **Deep black background** simulating the void of space
+- **Glowing planetary atmospheres** using CSS box-shadows
+- **3D perspective** creating depth and immersion
+- **Warm accent colors** (#f39041) inspired by solar flares
+- **Montserrat font** for clean, modern typography
 
-## 📈 Performance
+## 🛠️ Technical Highlights
 
-- ⚡ Lighthouse Score: 95+
-- 🎯 First Contentful Paint: <1.5s
-- 📦 Bundle Size: Optimized with Vite
+### CSS-Only Interactivity
+- No JavaScript event listeners
+- State managed through hidden radio inputs
+- Label elements as clickable triggers
+- `:checked` pseudo-class for state detection
+
+### 3D Effects
+- `perspective: 800px` on parent container
+- `transform-style: preserve-3d` for child elements
+- `translateZ()` for depth positioning
+- `rotateX()` for viewing angle
+
+### Performance
+- Hardware-accelerated CSS transforms
+- Minimal repaints through opacity transitions
+- No JavaScript execution overhead
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! This project proves what's possible with pure CSS.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -122,18 +115,21 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
 - Planet textures from [Solar System Scope](https://www.solarsystemscope.com/)
 - Astronomical data from NASA
-- Original CSS concept inspiration from [@coding.stella](https://codepen.io)
+- Original CSS concept by [@coding.stella](https://codepen.io)
+- Montserrat font from Google Fonts
 
 ---
 
 <div align="center">
 
-**Built with ❤️ using [Lovable](https://lovable.dev)**
+**Built with ❤️ using pure HTML & CSS**
+
+*No JavaScript was harmed in the making of this solar system*
 
 </div>
