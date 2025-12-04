@@ -123,14 +123,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Mobile Disclaimer -->
-  <div class="mobile-disclaimer">
-    <div class="disclaimer-content">
-      <i class="fa fa-desktop"></i>
-      <p>For the best experience, please view on a desktop or tablet device</p>
-      <button class="dismiss-btn" onclick="this.parentElement.parentElement.style.display='none'">Got it</button>
-    </div>
-  </div>
+<!-- Mobile Redirect Script -->
+  <script>
+    // Redirect mobile users to mobile version
+    if (window.innerWidth <= 768 && !window.location.search.includes('desktop=true')) {
+      window.location.href = 'mobile.html';
+    }
+  </script>
 
   <!-- Loading Screen -->
   <div class="loader">

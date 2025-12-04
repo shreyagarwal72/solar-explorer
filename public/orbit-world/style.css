@@ -67,64 +67,9 @@
   50% { opacity: 1; }
 }
 
-/* ===== MOBILE DISCLAIMER ===== */
+/* Mobile disclaimer - hidden since we redirect to mobile page */
 .mobile-disclaimer {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
-}
-
-.disclaimer-content {
-  text-align: center;
-  padding: 30px;
-  max-width: 300px;
-}
-
-.disclaimer-content i {
-  font-size: 50px;
-  color: #f39041;
-  margin-bottom: 20px;
-}
-
-.disclaimer-content p {
-  color: white;
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 25px;
-  letter-spacing: 1px;
-}
-
-.dismiss-btn {
-  background: linear-gradient(135deg, #f39041, #e55f45);
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dismiss-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 20px rgba(243, 144, 65, 0.4);
-}
-
-@media screen and (max-width: 768px) {
-  .mobile-disclaimer {
-    display: flex;
-  }
+  display: none !important;
 }
 
 /* ===== NEBULA EFFECT ===== */
@@ -2720,6 +2665,19 @@ body .solar_systm .planet_description.neptune a {
 }
 body .solar_systm .planet_description.neptune h2 {
   color: #a7c1f0;
+}
+body .solar_systm .planet_description.pluto a {
+  color: #FF8732;
+}
+body .solar_systm .planet_description.pluto h2 {
+  color: #ffc398;
+}
+body .solar_systm .planet_description label {
+  cursor: pointer;
+  display: inline-block;
+}
+body .solar_systm .planet_description label a {
+  pointer-events: none;
 }
 body .solar_systm .planet_description.pluto a {
   color: #FF8732;
