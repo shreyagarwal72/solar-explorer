@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +60,23 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom space colors
+        space: {
+          deep: "hsl(var(--space-deep))",
+          glow: "hsl(var(--space-glow))",
+          accent: "hsl(var(--space-accent))",
+        },
+        planet: {
+          mercury: "hsl(var(--mercury))",
+          venus: "hsl(var(--venus))",
+          earth: "hsl(var(--earth))",
+          mars: "hsl(var(--mars))",
+          jupiter: "hsl(var(--jupiter))",
+          saturn: "hsl(var(--saturn))",
+          uranus: "hsl(var(--uranus))",
+          neptune: "hsl(var(--neptune))",
+          pluto: "hsl(var(--pluto))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,25 +85,32 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "planet-rotate": {
+          from: { backgroundPositionY: "0px" },
+          to: { backgroundPositionY: "-1000px" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "1" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "planet-rotate": "planet-rotate 60s linear infinite",
+        "float": "float 6s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
       },
     },
   },
