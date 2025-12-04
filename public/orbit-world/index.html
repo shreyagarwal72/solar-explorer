@@ -8,7 +8,7 @@
   <title>Orbit World | Interactive Solar System Explorer</title>
   <meta name="title" content="Orbit World | Interactive Solar System Explorer">
   <meta name="description" content="Explore the solar system in stunning 3D using only HTML and CSS. Discover Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, and Pluto with detailed information about each planet and their moons.">
-  <meta name="author" content="Orbit World">
+  <meta name="author" content="Vanshu Agarwal">
   <meta name="keywords" content="solar system, planets, space exploration, astronomy, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, CSS only, no JavaScript">
   <meta name="robots" content="index, follow">
   
@@ -40,7 +40,12 @@
     "description": "An interactive solar system explorer built with pure HTML and CSS",
     "url": "https://orbitworld.app",
     "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Any"
+    "operatingSystem": "Any",
+    "creator": {
+      "@type": "Person",
+      "name": "Vanshu Agarwal",
+      "url": "https://vanshubhai.vercel.app"
+    }
   }
   </script>
   
@@ -55,17 +60,35 @@
     <div class="loader-text">Launching into Space...</div>
   </div>
 
-  <!-- Starfield Background -->
+  <!-- Starfield Background with Parallax -->
   <div class="starfield">
     <div class="stars stars-small"></div>
     <div class="stars stars-medium"></div>
     <div class="stars stars-large"></div>
+    <!-- Shooting Stars -->
+    <div class="shooting-star"></div>
+    <div class="shooting-star shooting-star-2"></div>
+    <div class="shooting-star shooting-star-3"></div>
+    <div class="shooting-star shooting-star-4"></div>
+    <div class="shooting-star shooting-star-5"></div>
   </div>
 
   <h1 class='logo'>
     Orbit World
     <span>Explore the Solar System</span>
   </h1>
+
+  <!-- Creator Info -->
+  <a href="https://vanshubhai.vercel.app" target="_blank" rel="noopener noreferrer" class="creator-info">
+    <span class="creator-label">Created by</span>
+    <span class="creator-name">Vanshu Agarwal</span>
+  </a>
+
+  <!-- Copyright -->
+  <div class="copyright">
+    © 2025 Nextup Studio. All Rights Reserved.
+  </div>
+
   <input class='planet9' id='pluto' type='radio' name='planet'>
   <label class='menu pluto' for='pluto'>
     <div class='preview'></div>
@@ -171,6 +194,11 @@
         <div class='mercury planet_description'>
           <h2>Planet</h2>
           <h1>Mercury</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">4,879 km</span></div>
+            <div class="stat"><span class="stat-label">Temperature</span><span class="stat-value">-180°C to 430°C</span></div>
+            <div class="stat"><span class="stat-label">Orbital Period</span><span class="stat-value">88 Earth days</span></div>
+          </div>
           <p>The closest planet to the sun. It circles the sun faster than all the other planets, which is why Romans named it after their swift-footed messenger god.</p>
           <label for='readMercury'>
             <a>
@@ -187,6 +215,11 @@
         <div class='planet_description venus'>
           <h2>Planet</h2>
           <h1>Venus</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">12,104 km</span></div>
+            <div class="stat"><span class="stat-label">Temperature</span><span class="stat-value">465°C (avg)</span></div>
+            <div class="stat"><span class="stat-label">Orbital Period</span><span class="stat-value">225 Earth days</span></div>
+          </div>
           <p>Named for the Roman goddess of love and beauty. In ancient times, Venus was often thought to be two different stars, the evening star and the morning star.</p>
           <label for='readVenus'>
             <a>
@@ -208,6 +241,11 @@
         <div class='earth planet_description'>
           <h2>Planet</h2>
           <h1>Earth</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">12,742 km</span></div>
+            <div class="stat"><span class="stat-label">Temperature</span><span class="stat-value">15°C (avg)</span></div>
+            <div class="stat"><span class="stat-label">Atmosphere</span><span class="stat-value">N₂, O₂</span></div>
+          </div>
           <p>Earth, our home. It is the only planet known to have an atmosphere containing free oxygen, oceans of liquid water on its surface, and, of course, life.</p>
           <label for='readEarth'>
             <a>
@@ -234,6 +272,11 @@
         <div class='mars planet_description'>
           <h2>Planet</h2>
           <h1>Mars</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">6,779 km</span></div>
+            <div class="stat"><span class="stat-label">Temperature</span><span class="stat-value">-65°C (avg)</span></div>
+            <div class="stat"><span class="stat-label">Moons</span><span class="stat-value">2</span></div>
+          </div>
           <p>Fourth planet from the Sun and the second smallest planet in the solar system. Named after the Roman god of war often described as the "Red Planet".</p>
           <label for='readMars'>
             <a>
@@ -265,6 +308,11 @@
         <div class='jupiter planet_description'>
           <h2>Planet</h2>
           <h1>Jupiter</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">139,820 km</span></div>
+            <div class="stat"><span class="stat-label">Temperature</span><span class="stat-value">-110°C</span></div>
+            <div class="stat"><span class="stat-label">Moons</span><span class="stat-value">95+</span></div>
+          </div>
           <p>Jupiter is the largest planet in the solar system. Fittingly, it was named after the king of the gods in Roman mythology.</p>
           <label for='readJupiter'>
             <a>
@@ -297,6 +345,11 @@
         <div class='planet_description saturn'>
           <h2>Planet</h2>
           <h1>Saturn</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">116,460 km</span></div>
+            <div class="stat"><span class="stat-label">Ring Span</span><span class="stat-value">282,000 km</span></div>
+            <div class="stat"><span class="stat-label">Moons</span><span class="stat-value">146</span></div>
+          </div>
           <p>Saturn is the sixth planet from the sun and the second largest planet in the solar system. Saturn was the Roman name for Cronus, the lord of the Titans.</p>
           <label for='readSaturn'>
             <a>
@@ -328,6 +381,11 @@
         <div class='planet_description uranus'>
           <h2>Planet</h2>
           <h1>Uranus</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">50,724 km</span></div>
+            <div class="stat"><span class="stat-label">Axial Tilt</span><span class="stat-value">98°</span></div>
+            <div class="stat"><span class="stat-label">Moons</span><span class="stat-value">28</span></div>
+          </div>
           <p>The first planet to be discovered by scientists. The planet is notable for its dramatic tilt, which causes its axis to point nearly directly at the sun.</p>
           <label for='readUranus'>
             <a>
@@ -359,6 +417,11 @@
         <div class='neptune planet_description'>
           <h2>Planet</h2>
           <h1>Neptune</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">49,244 km</span></div>
+            <div class="stat"><span class="stat-label">Wind Speed</span><span class="stat-value">2,100 km/h</span></div>
+            <div class="stat"><span class="stat-label">Moons</span><span class="stat-value">16</span></div>
+          </div>
           <p>Neptune is the eighth and farthest known planet from the Sun. Named after the Roman god of the sea due to its striking blue color.</p>
           <label for='readNeptune'>
             <a>
@@ -375,6 +438,11 @@
         <div class='planet_description pluto'>
           <h2>Dwarf planet</h2>
           <h1>Pluto</h1>
+          <div class="planet-stats">
+            <div class="stat"><span class="stat-label">Diameter</span><span class="stat-value">2,377 km</span></div>
+            <div class="stat"><span class="stat-label">Temperature</span><span class="stat-value">-230°C</span></div>
+            <div class="stat"><span class="stat-label">Orbital Period</span><span class="stat-value">248 years</span></div>
+          </div>
           <p>Pluto, once considered the ninth and most distant planet from the sun, is now the largest known dwarf planet in the solar system.</p>
           <label for='readPluto'>
             <a>
@@ -392,6 +460,12 @@
   <input class='read' id='closeMercury' type='radio' name='mercuryRead'>
   <div class='panel'>
     <h1>Mercury</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 4,879 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: -180°C to 430°C</div>
+      <div class="panel-stat"><i class="fa fa-clock-o"></i> Day Length: 59 Earth days</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 0</div>
+    </div>
     <p>Mercury is the closest planet to the sun. As such, it circles the sun faster than all the other planets, which is why Romans named it after their swift-footed messenger god.</p>
     <p>The Sumerians also knew of Mercury since at least 5,000 years ago. It was often associated with Nabu, the god of writing. Mercury was also given separate names for its appearance as both a morning star and as an evening star.</p>
     <img src='https://i2.wp.com/www.astronomytrek.com/wp-content/uploads/2012/11/mercury-1.jpg?fit=678%2C381&ssl=1' alt='Mercury surface'>
@@ -408,6 +482,12 @@
   <input class='read' id='closeVenus' type='radio' name='venusRead'>
   <div class='panel'>
     <h1>Venus</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 12,104 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: 465°C</div>
+      <div class="panel-stat"><i class="fa fa-cloud"></i> Atmosphere: 96% CO₂</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 0</div>
+    </div>
     <p>Venus, the second planet from the sun, is named for the Roman goddess of love and beauty. The planet may have been named for the most beautiful deity of her pantheon because it shone the brightest of the five planets known to ancient astronomers.</p>
     <p>In ancient times, Venus was often thought to be two different stars, the evening star and the morning star — that is, the ones that first appeared at sunset and sunrise.</p>
     <img src='https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2014/2-whatistheave.jpg' alt='Venus atmosphere'>
@@ -424,6 +504,12 @@
   <input class='read' id='closeEarth' type='radio' name='earthRead'>
   <div class='panel'>
     <h1>Earth</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 12,742 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: 15°C (avg)</div>
+      <div class="panel-stat"><i class="fa fa-tint"></i> Water Coverage: 71%</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 1</div>
+    </div>
     <p>Earth, our home, is the third planet from the sun. It is the only planet known to have an atmosphere containing free oxygen, oceans of liquid water on its surface, and, of course, life.</p>
     <img src='https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&h=350' alt='Earth from space'>
     <h2>The Earth's rotation is gradually slowing.</h2>
@@ -439,6 +525,12 @@
   <input class='read' id='closeMars' type='radio' name='marsRead'>
   <div class='panel'>
     <h1>Mars</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 6,779 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: -65°C</div>
+      <div class="panel-stat"><i class="fa fa-clock-o"></i> Day Length: 24h 37m</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 2</div>
+    </div>
     <p>Mars is the fourth planet from the sun. Befitting the red planet's bloody color, the Romans named it after their god of war.</p>
     <img src='https://1.bp.blogspot.com/-ou7Je3OVg6U/WYtxDqjNp_I/AAAAAAAACSQ/fsopS5VtFg4bmlv8hQNfiRYfJqTygCotQCLcBGAs/s2048/Martian%2Blandscape%2Bby%2BAmante%2BLombardi.jpg' alt='Mars landscape'>
     <h2>Mars and Earth have approximately the same landmass.</h2>
@@ -454,6 +546,12 @@
   <input class='read' id='closeJupiter' type='radio' name='jupiterRead'>
   <div class='panel'>
     <h1>Jupiter</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 139,820 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: -110°C</div>
+      <div class="panel-stat"><i class="fa fa-clock-o"></i> Day Length: 9h 56m</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 95+</div>
+    </div>
     <p>Jupiter is the largest planet in the solar system. Fittingly, it was named after the king of the gods in Roman mythology.</p>
     <img src='http://hanaleikauaivacation.com/wp-content/uploads/parser/jupiter-landscape-1.jpg' alt='Jupiter'>
     <h2>Jupiter is the fourth brightest object in the solar system.</h2>
@@ -469,11 +567,17 @@
   <input class='read' id='closeSaturn' type='radio' name='saturnRead'>
   <div class='panel'>
     <h1>Saturn</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 116,460 km</div>
+      <div class="panel-stat"><i class="fa fa-circle-o"></i> Ring Span: 282,000 km</div>
+      <div class="panel-stat"><i class="fa fa-clock-o"></i> Day Length: 10h 42m</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 146</div>
+    </div>
     <p>Saturn is the sixth planet from the Sun and the second largest planet in the solar system. Saturn was the Roman name for Cronus, the lord of the Titans.</p>
     <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/38_saturn_1600x900.jpg' alt='Saturn'>
     <h2>Saturn has the most extensive rings in the solar system.</h2>
     <p>The rings are made mostly of chunks of ice and carbonaceous dust. They stretch out more than 120,700 km from the planet but are only about 20 meters thick.</p>
-    <h2>Saturn has 82 known moons.</h2>
+    <h2>Saturn has 146 known moons.</h2>
     <p>Titan, the largest, comprises more than 90% of the mass in orbit around Saturn, including the rings.</p>
     <h2>Saturn is the flattest planet.</h2>
     <p>Its polar diameter is 90% of its equatorial diameter, due to low density and fast rotation.</p>
@@ -484,6 +588,12 @@
   <input class='read' id='closeUranus' type='radio' name='uranusRead'>
   <div class='panel'>
     <h1>Uranus</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 50,724 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: -224°C</div>
+      <div class="panel-stat"><i class="fa fa-refresh"></i> Axial Tilt: 98°</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 28</div>
+    </div>
     <p>Uranus is the seventh planet from the Sun. It's not visible to the naked eye, and became the first planet discovered with the use of a telescope.</p>
     <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/69_uranus_redspot.jpg' alt='Uranus'>
     <h2>Uranus turns on its axis once every 17 hours, 14 minutes.</h2>
@@ -499,6 +609,12 @@
   <input class='read' id='closeNeptune' type='radio' name='neptuneRead'>
   <div class='panel'>
     <h1>Neptune</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 49,244 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: -214°C</div>
+      <div class="panel-stat"><i class="fa fa-wind"></i> Wind Speed: 2,100 km/h</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 16</div>
+    </div>
     <p>Neptune is the eighth and farthest known planet from the Sun. It was the first planet located through mathematical predictions rather than regular observations of the sky.</p>
     <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/90_neptune_702.jpg' alt='Neptune'>
     <h2>Neptune has the strongest winds in the Solar System.</h2>
@@ -514,6 +630,12 @@
   <input class='read' id='closePluto' type='radio' name='plutoRead'>
   <div class='panel'>
     <h1>Pluto</h1>
+    <div class="panel-stats">
+      <div class="panel-stat"><i class="fa fa-globe"></i> Diameter: 2,377 km</div>
+      <div class="panel-stat"><i class="fa fa-thermometer"></i> Temperature: -230°C</div>
+      <div class="panel-stat"><i class="fa fa-clock-o"></i> Orbital Period: 248 years</div>
+      <div class="panel-stat"><i class="fa fa-moon-o"></i> Moons: 5</div>
+    </div>
     <p>Pluto, once considered the ninth planet, is now classified as a dwarf planet. It was discovered in 1930 by Clyde Tombaugh at the Lowell Observatory.</p>
     <img src='https://solarsystem.nasa.gov/system/stellar_items/image_files/780_pluto_702.jpg' alt='Pluto'>
     <h2>Pluto was reclassified from a planet to a dwarf planet in 2006.</h2>
