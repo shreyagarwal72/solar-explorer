@@ -10,7 +10,7 @@
 
 **An immersive, interactive solar system explorer built with pure HTML and CSS. No JavaScript required!**
 
-[Live Demo](https://lovable.dev/projects/6bd8f616-d80a-47f7-bc08-0dfb891abc9e) · [Report Bug](https://github.com/yourusername/orbit-world/issues) · [Request Feature](https://github.com/yourusername/orbit-world/issues)
+[Live Demo](https://orbit-world.vercel.app) · [Report Bug](https://github.com/yourusername/orbit-world/issues) · [Request Feature](https://github.com/yourusername/orbit-world/issues)
 
 </div>
 
