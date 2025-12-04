@@ -240,6 +240,14 @@
     <span class="audio-label">Sound</span>
   </div>
 
+  <!-- Fullscreen Controls -->
+  <div class="fullscreen-controls">
+    <button class="fullscreen-btn" id="fullscreenToggle" title="Toggle fullscreen">
+      <i class="fa fa-expand" id="fullscreenIcon"></i>
+    </button>
+    <span class="fullscreen-label">Fullscreen</span>
+  </div>
+
   <!-- Keyboard Controls Hint -->
   <div class="keyboard-hint">
     <span><i class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> Navigate Planets</span>
@@ -1204,6 +1212,49 @@
         updateTourInfo(this.id);
       });
     });
+    
+    // ===== FULLSCREEN FUNCTIONALITY =====
+    const fullscreenToggle = document.getElementById('fullscreenToggle');
+    const fullscreenIcon = document.getElementById('fullscreenIcon');
+    let isFullscreen = false;
+    
+    function toggleFullscreen() {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+        // Enter fullscreen
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      } else {
+        // Exit fullscreen
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+    }
+    
+    function updateFullscreenUI() {
+      isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+      fullscreenIcon.className = isFullscreen ? 'fa fa-compress' : 'fa fa-expand';
+      fullscreenToggle.classList.toggle('active', isFullscreen);
+    }
+    
+    fullscreenToggle.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', updateFullscreenUI);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
+    document.addEventListener('mozfullscreenchange', updateFullscreenUI);
+    document.addEventListener('MSFullscreenChange', updateFullscreenUI);
   </script>
 </body>
 </html>
