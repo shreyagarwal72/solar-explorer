@@ -98,7 +98,7 @@
       }
     },
     "screenshot": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=630&fit=crop",
-    "featureList": ["Interactive 3D planets", "Planet facts and statistics", "Moon information", "Keyboard navigation", "Ambient space sounds", "Guided tour mode", "AI Assistant", "Planet search", "Social sharing"],
+    "featureList": ["Interactive 3D planets", "Planet facts and statistics", "Moon information", "Keyboard navigation", "Ambient space sounds", "Guided tour mode", "AI Assistant", "Social sharing"],
     "keywords": "solar system, planets, astronomy, education, space exploration"
   }
   </script>
@@ -231,39 +231,6 @@
     <div class="shooting-star shooting-star-5"></div>
   </div>
 
-  <!-- Glowing Search Bar -->
-  <div class="search-container" role="search">
-    <div class="search-wrapper">
-      <div class="search-glow" aria-hidden="true"></div>
-      <div class="search-darkBorderBg" aria-hidden="true"></div>
-      <div class="search-white" aria-hidden="true"></div>
-      <div class="search-border" aria-hidden="true"></div>
-      
-      <div class="search-main">
-        <label for="planet-search" class="visually-hidden">Search planets</label>
-        <input 
-          type="text" 
-          id="planet-search" 
-          class="search-input" 
-          placeholder="Search planets..." 
-          aria-label="Search planets"
-          autocomplete="off"
-        >
-        <div class="search-input-mask" aria-hidden="true"></div>
-        <div class="search-pink-mask" aria-hidden="true"></div>
-        <div class="search-icon-wrapper" aria-hidden="true">
-          <i class="fa fa-search"></i>
-        </div>
-        <button class="search-clear-btn" id="searchClear" type="button" aria-label="Clear search">
-          <i class="fa fa-times"></i>
-        </button>
-        
-        <div class="search-results" id="searchResults" role="listbox" aria-label="Search results">
-          <!-- Results populated by JS -->
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Guided Tour Controls -->
   <div class="tour-controls">
@@ -1402,75 +1369,6 @@
     document.addEventListener('mozfullscreenchange', updateFullscreenUI);
     document.addEventListener('MSFullscreenChange', updateFullscreenUI);
     
-    // ===== SEARCH FUNCTIONALITY =====
-    const searchInput = document.getElementById('planet-search');
-    const searchResults = document.getElementById('searchResults');
-    const searchClear = document.getElementById('searchClear');
-    
-    const planetSearchData = [
-      { id: 'mercury', name: 'Mercury', desc: 'Closest to the Sun', image: 'https://www.solarsystemscope.com/images/textures/full/2k_makemake_fictional.jpg' },
-      { id: 'venus', name: 'Venus', desc: 'Hottest planet', image: 'https://nasa3d.arc.nasa.gov/shared_assets/images/ven0aaa2/ven0aaa2-copy-428-321.jpg' },
-      { id: 'earth', name: 'Earth', desc: 'Our home planet', image: 'https://img00.deviantart.net/04ef/i/2009/114/3/e/new_earth_texture_map_by_lightondesigns.jpg' },
-      { id: 'mars', name: 'Mars', desc: 'The Red Planet', image: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/mars_texture.jpg' },
-      { id: 'jupiter', name: 'Jupiter', desc: 'Largest planet', image: 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA07782_hires.jpg' },
-      { id: 'saturn', name: 'Saturn', desc: 'Famous rings', image: 'https://www.solarsystemscope.com/images/textures/full/2k_saturn.jpg' },
-      { id: 'uranus', name: 'Uranus', desc: 'Ice giant', image: 'https://img00.deviantart.net/957c/i/2017/165/4/9/uranus_texture_map_by_jcpag2010-db7yjwb.png' },
-      { id: 'neptune', name: 'Neptune', desc: 'Windiest planet', image: 'https://img00.deviantart.net/f068/i/2017/165/b/c/neptune_texture_map_by_jcpag2010-dbcjcv5.png' },
-      { id: 'pluto', name: 'Pluto', desc: 'Dwarf planet', image: 'https://pre00.deviantart.net/4677/th/pre/f/2015/314/4/e/pluto_map__2015_nov_10__by_snowfall_the_cat-d918tlb.png' }
-    ];
-    
-    function renderSearchResults(query) {
-      if (!query.trim()) {
-        searchResults.classList.remove('visible');
-        return;
-      }
-      
-      const filtered = planetSearchData.filter(p => 
-        p.name.toLowerCase().includes(query.toLowerCase()) || 
-        p.desc.toLowerCase().includes(query.toLowerCase())
-      );
-      
-      if (filtered.length === 0) {
-        searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-info"><h4>No results found</h4><p>Try searching for a planet name</p></div></div>';
-      } else {
-        searchResults.innerHTML = filtered.map(p => `
-          <div class="search-result-item" data-planet="${p.id}" role="option" tabindex="0">
-            <div class="search-result-preview" style="background-image: url('${p.image}')"></div>
-            <div class="search-result-info">
-              <h4>${p.name}</h4>
-              <p>${p.desc}</p>
-            </div>
-          </div>
-        `).join('');
-      }
-      
-      searchResults.classList.add('visible');
-    }
-    
-    searchInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
-    searchInput.addEventListener('focus', () => { if (searchInput.value) renderSearchResults(searchInput.value); });
-    
-    searchResults.addEventListener('click', (e) => {
-      const item = e.target.closest('.search-result-item');
-      if (item && item.dataset.planet) {
-        document.getElementById(item.dataset.planet).checked = true;
-        updateTourInfo(item.dataset.planet);
-        searchInput.value = '';
-        searchResults.classList.remove('visible');
-      }
-    });
-    
-    searchClear.addEventListener('click', () => {
-      searchInput.value = '';
-      searchResults.classList.remove('visible');
-    });
-    
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.search-container')) {
-        searchResults.classList.remove('visible');
-      }
-    });
-    
     // ===== PREFERENCES & LOCALSTORAGE =====
     const preferencesToggle = document.getElementById('preferencesToggle');
     const preferencesPanel = document.getElementById('preferencesPanel');
@@ -1554,7 +1452,7 @@
     // ===== COPY LINK BUTTON =====
     document.getElementById('copyLinkBtn').addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText('https://orbit-world.vercel.app');
+        await navigator.clipboard.writeText('https://orbital-world.vercel.app');
         const btn = document.getElementById('copyLinkBtn');
         btn.innerHTML = '<i class="fa fa-check"></i>';
         setTimeout(() => { btn.innerHTML = '<i class="fa fa-link"></i>'; }, 2000);
