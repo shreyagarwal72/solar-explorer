@@ -913,31 +913,40 @@ body label {
   cursor: pointer;
 }
 body label.mercury > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_mercury.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_mercury.jpg"), linear-gradient(135deg, #9e9e9e, #616161) !important;
+  background-color: #9e9e9e !important;
 }
 body label.venus > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_venus_surface.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_venus_surface.jpg"), linear-gradient(135deg, #ffd54f, #ff8f00) !important;
+  background-color: #e8a735 !important;
 }
 body label.earth > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg"), linear-gradient(135deg, #4fc3f7, #1565c0) !important;
+  background-color: #2196f3 !important;
 }
 body label.mars > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_mars.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_mars.jpg"), linear-gradient(135deg, #ef5350, #c62828) !important;
+  background-color: #c62828 !important;
 }
 body label.jupiter > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_jupiter.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_jupiter.jpg"), linear-gradient(135deg, #ffcc80, #f39041) !important;
+  background-color: #d4a574 !important;
 }
 body label.saturn > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_saturn.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_saturn.jpg"), linear-gradient(135deg, #ffe082, #d4a574) !important;
+  background-color: #d4a574 !important;
 }
 body label.uranus > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_uranus.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_uranus.jpg"), linear-gradient(135deg, #80deea, #00acc1) !important;
+  background-color: #4dd0e1 !important;
 }
 body label.neptune > .preview {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_neptune.jpg") !important;
+  background: url("https://www.solarsystemscope.com/textures/download/2k_neptune.jpg"), linear-gradient(135deg, #5c6bc0, #1a237e) !important;
+  background-color: #3949ab !important;
 }
 body label.pluto > .preview {
-  background: url("https://upload.wikimedia.org/wikipedia/commons/e/ef/Pluto_in_True_Color_-_High-Res.jpg") !important;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/e/ef/Pluto_in_True_Color_-_High-Res.jpg"), linear-gradient(135deg, #bcaaa4, #6d4c41) !important;
+  background-color: #8d6e63 !important;
 }
 body label.menu {
   color: white;
@@ -2441,15 +2450,18 @@ body .solar_systm .planet_description a {
   opacity: 0;
 }
 body .solar_systm .planet.mercury {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_mercury.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_mercury.jpg"), linear-gradient(135deg, #9e9e9e, #616161);
+  background-color: #9e9e9e;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px rgba(234, 201, 201, 0.6);
 }
 body .solar_systm .planet.venus {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_venus_surface.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_venus_surface.jpg"), linear-gradient(135deg, #ffd54f, #ff8f00);
+  background-color: #e8a735;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px #b98f21;
 }
 body .solar_systm .planet.earth {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg"), linear-gradient(135deg, #4fc3f7, #1565c0);
+  background-color: #2196f3;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(113, 170, 168, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px rgba(113, 170, 168, 0.6);
 }
 body .solar_systm .planet.earth .moon.moon {
@@ -2467,7 +2479,8 @@ body .solar_systm .planet.earth .trajectory.m {
   top: -390px;
 }
 body .solar_systm .planet.mars {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_mars.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_mars.jpg"), linear-gradient(135deg, #ef5350, #c62828);
+  background-color: #c62828;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px rgba(188, 127, 127, 0.6);
 }
 body .solar_systm .planet.mars .moon h3 {
@@ -2502,7 +2515,8 @@ body .solar_systm .planet.mars .phoebos {
   box-shadow: 0px -30px 30px 10px black inset;
 }
 body .solar_systm .planet.jupiter {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_jupiter.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_jupiter.jpg"), linear-gradient(135deg, #ffcc80, #f39041);
+  background-color: #d4a574;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px rgba(188, 143, 127, 0.6);
 }
 body .solar_systm .planet.jupiter .moon h3 {
@@ -2551,7 +2565,8 @@ body .solar_systm .planet.jupiter .ganymede {
   box-shadow: 0px -30px 30px 10px black inset;
 }
 body .solar_systm .planet.saturn {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_saturn.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_saturn.jpg"), linear-gradient(135deg, #ffe082, #d4a574);
+  background-color: #d4a574;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px rgba(188, 143, 127, 0.6);
 }
 body .solar_systm .planet.saturn .saturn-rings {
@@ -2604,7 +2619,8 @@ body .solar_systm .planet.saturn .enceladus {
   box-shadow: 0px -30px 30px 10px black inset;
 }
 body .solar_systm .planet.uranus {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_uranus.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_uranus.jpg"), linear-gradient(135deg, #80deea, #00acc1);
+  background-color: #4dd0e1;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px rgba(127, 188, 171, 0.6);
 }
 body .solar_systm .planet.uranus .moon h3 {
@@ -2653,7 +2669,8 @@ body .solar_systm .planet.uranus .umbriel {
   box-shadow: 0px -30px 30px 10px black inset;
 }
 body .solar_systm .planet.neptune {
-  background: url("https://www.solarsystemscope.com/textures/download/2k_neptune.jpg");
+  background: url("https://www.solarsystemscope.com/textures/download/2k_neptune.jpg"), linear-gradient(135deg, #5c6bc0, #1a237e);
+  background-color: #3949ab;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px #2d4153;
 }
 body .solar_systm .planet.neptune .moon h3 {
@@ -2702,7 +2719,8 @@ body .solar_systm .planet.neptune .nereid {
   box-shadow: 0px -30px 30px 10px black inset;
 }
 body .solar_systm .planet.pluto {
-  background: url("https://upload.wikimedia.org/wikipedia/commons/e/ef/Pluto_in_True_Color_-_High-Res.jpg");
+  background: url("https://upload.wikimedia.org/wikipedia/commons/e/ef/Pluto_in_True_Color_-_High-Res.jpg"), linear-gradient(135deg, #bcaaa4, #6d4c41);
+  background-color: #8d6e63;
   box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px rgba(234, 205, 199, 0.6) inset, 0 0px 23px 4px rgba(234, 205, 199, 0.6) inset, 0 -10px 130px #2d4153;
 }
 body .solar_systm .planet_description {
@@ -3697,47 +3715,7 @@ body .panel p {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== SOCIAL SHARING ===== */
-.social-share {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  display: flex;
-  gap: 10px;
-  padding: 8px 15px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
-}
-
-.social-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.social-btn:hover {
-  transform: scale(1.15);
-}
-
-.social-btn.twitter:hover { background: rgba(29, 161, 242, 0.3); border-color: #1da1f2; color: #1da1f2; }
-.social-btn.facebook:hover { background: rgba(59, 89, 152, 0.3); border-color: #3b5998; color: #3b5998; }
-.social-btn.linkedin:hover { background: rgba(0, 119, 181, 0.3); border-color: #0077b5; color: #0077b5; }
-.social-btn.whatsapp:hover { background: rgba(37, 211, 102, 0.3); border-color: #25d366; color: #25d366; }
-.social-btn.copy-link:hover { background: rgba(243, 144, 65, 0.3); border-color: #f39041; color: #f39041; }
+/* Social sharing removed */
 
 /* ===== SKIP TO CONTENT (Accessibility) ===== */
 .skip-to-content {
@@ -3915,17 +3893,6 @@ body .panel p {
 
 /* ===== RESPONSIVE ADJUSTMENTS FOR NEW FEATURES ===== */
 @media screen and (max-width: 768px) {
-  .social-share {
-    gap: 6px;
-    padding: 6px 10px;
-  }
-  
-  .social-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
-  }
-  
   .preferences-controls {
     bottom: 300px;
   }
@@ -3944,16 +3911,5 @@ body .panel p {
   .preferences-controls {
     bottom: 400px;
     right: 40px;
-  }
-  
-  .social-share {
-    gap: 12px;
-    padding: 10px 20px;
-  }
-  
-  .social-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
   }
 }
