@@ -343,28 +343,6 @@
     <span><i class="fa fa-arrow-up"></i><i class="fa fa-arrow-down"></i> Navigate Planets</span>
   </div>
 
-  <!-- Social Sharing Buttons -->
-  <nav class="social-share" aria-label="Share this site">
-    <a href="https://twitter.com/intent/tweet?url=https://orbital-world.vercel.app&text=Explore%20the%20solar%20system%20in%20stunning%203D%20with%20Orbit%20World!" 
-       class="social-btn twitter" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
-      <i class="fa fa-twitter"></i>
-    </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://orbital-world.vercel.app" 
-       class="social-btn facebook" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
-      <i class="fa fa-facebook"></i>
-    </a>
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://orbital-world.vercel.app&title=Orbit%20World&summary=Interactive%203D%20Solar%20System%20Explorer" 
-       class="social-btn linkedin" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
-      <i class="fa fa-linkedin"></i>
-    </a>
-    <a href="https://wa.me/?text=Check%20out%20Orbit%20World%20-%20an%20amazing%203D%20solar%20system%20explorer!%20https://orbital-world.vercel.app" 
-       class="social-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">
-      <i class="fa fa-whatsapp"></i>
-    </a>
-    <button class="social-btn copy-link" id="copyLinkBtn" aria-label="Copy link to clipboard">
-      <i class="fa fa-link"></i>
-    </button>
-  </nav>
 
   <h1 class='logo'>
     Orbit World
@@ -1449,17 +1427,6 @@
     
     loadPreferences();
     
-    // ===== COPY LINK BUTTON =====
-    document.getElementById('copyLinkBtn').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText('https://orbital-world.vercel.app');
-        const btn = document.getElementById('copyLinkBtn');
-        btn.innerHTML = '<i class="fa fa-check"></i>';
-        setTimeout(() => { btn.innerHTML = '<i class="fa fa-link"></i>'; }, 2000);
-      } catch (err) {
-        console.error('Failed to copy:', err);
-      }
-    });
     
     // ===== SAVE LAST VIEWED PLANET =====
     const lastPlanet = localStorage.getItem('orbitWorldLastPlanet');
