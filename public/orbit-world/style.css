@@ -62,8 +62,8 @@
 }
 
 @keyframes loaderFadeOut {
-  0% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; }
+  0% { opacity: 1; visibility: visible; pointer-events: all; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 
 @keyframes planetPulse {
@@ -81,10 +81,7 @@
   50% { opacity: 1; }
 }
 
-/* Mobile disclaimer - hidden since we redirect to mobile page */
-.mobile-disclaimer {
-  display: none !important;
-}
+/* Mobile disclaimer removed - redirect handles mobile */
 
 /* ===== NEBULA EFFECT ===== */
 .nebula {
@@ -491,12 +488,13 @@
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 50;
   font-family: "Montserrat", sans-serif;
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.3);
   letter-spacing: 2px;
   text-transform: uppercase;
+  pointer-events: none;
 }
 
 /* ===== STARFIELD BACKGROUND WITH PARALLAX ===== */
@@ -3181,7 +3179,7 @@ body .panel p {
   position: fixed;
   bottom: 270px;
   right: 20px;
-  z-index: 1000;
+  z-index: 200;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3238,7 +3236,7 @@ body .panel p {
   border-radius: 16px;
   border: 1px solid rgba(102, 126, 234, 0.3);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(102, 126, 234, 0.2);
-  z-index: 999;
+  z-index: 250;
   display: flex;
   flex-direction: column;
   opacity: 0;
