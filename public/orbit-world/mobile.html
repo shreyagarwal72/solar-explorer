@@ -229,13 +229,13 @@
 
     /* ===== ORIENTATION MEDIA QUERIES ===== */
     @media (orientation: portrait) {
-      .rotate-overlay { display: flex !important; }
-      .main-content { display: none !important; }
+      .rotate-overlay { display: flex; }
+      .main-content { display: none; }
     }
 
     @media (orientation: landscape) {
-      .rotate-overlay { display: none !important; }
-      .main-content { display: block !important; }
+      .rotate-overlay { display: none; }
+      .main-content { display: block; }
     }
 
     /* ===== STARS BACKGROUND ===== */
@@ -1123,6 +1123,23 @@
   </div>
   
   <script>
+    // ===== ORIENTATION DETECTION (JS fallback) =====
+    function checkOrientation() {
+      const overlay = document.querySelector('.rotate-overlay');
+      const content = document.querySelector('.main-content');
+      if (!overlay || !content) return;
+      
+      const isPortrait = window.innerHeight > window.innerWidth;
+      overlay.style.display = isPortrait ? 'flex' : 'none';
+      content.style.display = isPortrait ? 'none' : 'block';
+    }
+    
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(checkOrientation, 100);
+    });
+    checkOrientation();
+
     // ===== CAROUSEL =====
     const carousel = document.getElementById('carousel');
     const cards = document.querySelectorAll('.planet-card');
