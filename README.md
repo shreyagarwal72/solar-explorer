@@ -1,4 +1,4 @@
-# 🌌 Orbit World
+# 🌌 Orbital World
 
 <div align="center">
 
