@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Orbit World](https://img.shields.io/badge/Orbit_World-Space_Explorer-orange?style=for-the-badge&logo=planet)
+![Orbit World](https://img.shields.io/badge/Orbital_World-Space_Explorer-orange?style=for-the-badge&logo=planet)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![No JavaScript](https://img.shields.io/badge/JavaScript-None_Required-success?style=flat-square)
